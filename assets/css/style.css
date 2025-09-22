@@ -1,0 +1,173 @@
+/* Custom styles for Science Festival */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border-radius: 15px;
+}
+
+.stat-item {
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.project-card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.vote-display {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.vote-display-large {
+    text-align: center;
+}
+
+.vote-btn {
+    transition: all 0.3s ease;
+}
+
+.vote-btn:hover {
+    transform: scale(1.05);
+}
+
+.project-content h1,
+.project-content h2,
+.project-content h3,
+.project-content h4,
+.project-content h5,
+.project-content h6 {
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.project-content h1 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+}
+
+.project-content h2 {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.3rem;
+}
+
+.project-content p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.project-content strong {
+    color: #333;
+}
+
+.project-content em {
+    font-style: italic;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.btn {
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 15px;
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0 !important;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem !important;
+    }
+    
+    .stat-item h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation for vote button */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.vote-btn:active {
+    animation: pulse 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}
