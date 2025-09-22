@@ -1,0 +1,37 @@
+# Temporary files
+/tmp/
+*.tmp
+*.temp
+
+# Database files (if using SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# Upload files
+uploads/*
+!uploads/.gitkeep
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+error_log
+
+# Config files with sensitive data
+config/local.php
+.env
+
+# Composer dependencies (if using)
+vendor/
+
+# Node modules (if using)
+node_modules/
