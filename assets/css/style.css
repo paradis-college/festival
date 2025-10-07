@@ -190,8 +190,9 @@ footer {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for mobile devices */
 @media (max-width: 768px) {
+    /* Hero section - smaller on mobile */
     .hero-section {
         padding: 2rem 0 !important;
     }
@@ -203,6 +204,106 @@ footer {
     .stat-item h3 {
         font-size: 1.5rem;
     }
+    
+    /* Stack filter and sort on mobile */
+    .row.mb-4 form {
+        flex-direction: column;
+    }
+    
+    .row.mb-4 form label {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Full width buttons on mobile */
+    .btn-lg {
+        padding: 0.8rem 1rem;
+    }
+    
+    /* Navbar adjustments */
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* Additional polish and animations */
+.card {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.btn-outline-info:hover {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+/* Success button styling */
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #17a589 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* Info button styling */
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    border: none;
+    color: white;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #138496 0%, #0f6674 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+/* Shadow effect on cards */
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Smooth page transitions */
+body {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Link styling */
+a {
+    transition: all 0.2s ease;
+}
+
+/* Badge improvements */
+.badge.bg-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+}
+
+.badge.bg-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%) !important;
 }
 
 /* Animation for vote button */
