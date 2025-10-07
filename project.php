@@ -1,14 +1,21 @@
 <?php
+// Include core functions and check if project exists
 require_once 'includes/functions.php';
 
+// Get project ID from URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $project = getProject($id);
 
+// If project doesn't exist, redirect to projects page
 if (!$project) {
     header('Location: projects.php');
     exit();
 }
 
+// Get comments for this project
+$comments = getComments($id);
+
+// Set page title to project name
 $title = $project['title'];
 include 'includes/header.php';
 ?>
@@ -39,6 +46,86 @@ include 'includes/header.php';
                 <div class="project-content">
                     <?php echo parseMarkdown($project['content']); ?>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-comments me-2"></i>Comments 
+                    <span class="badge bg-light text-dark"><?php echo count($comments); ?></span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- Add comment form - only for logged in users -->
+                <?php if (isLoggedIn()): ?>
+                    <div class="mb-4">
+                        <h6 class="mb-3">Add a comment:</h6>
+                        
+                        <!-- Pre-written positive comments as quick buttons -->
+                        <div class="mb-3">
+                            <small class="text-muted d-block mb-2">Quick positive comments (click to use):</small>
+                            <div class="d-flex flex-wrap">
+                                <?php 
+                                $prewritten = getPrewrittenComments();
+                                // Show 5 random pre-written comments
+                                $selected = array_rand(array_flip($prewritten), min(5, count($prewritten)));
+                                foreach ($selected as $quickComment): 
+                                ?>
+                                    <button type="button" class="btn btn-sm quick-comment-btn" 
+                                            onclick="document.getElementById('comment_text').value = '<?php echo addslashes($quickComment); ?>'">
+                                        <?php echo htmlspecialchars($quickComment); ?>
+                                    </button>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment form -->
+                        <form method="POST" action="comment.php">
+                            <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
+                            <div class="mb-3">
+                                <textarea class="form-control" id="comment_text" name="comment_text" 
+                                          rows="3" placeholder="Write your comment here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-paper-plane me-2"></i>Post Comment
+                            </button>
+                        </form>
+                    </div>
+                    <hr>
+                <?php else: ?>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <a href="login.php" class="alert-link">Login</a> to leave a comment on this project.
+                    </div>
+                <?php endif; ?>
+                
+                <!-- Display existing comments -->
+                <?php if (empty($comments)): ?>
+                    <p class="text-muted text-center py-3">
+                        <i class="fas fa-comment-slash me-2"></i>No comments yet. Be the first to comment!
+                    </p>
+                <?php else: ?>
+                    <div class="comments-list mt-3">
+                        <?php foreach ($comments as $comment): ?>
+                            <div class="comment-item">
+                                <div class="comment-author">
+                                    <i class="fas fa-user-circle me-1"></i>
+                                    <?php echo htmlspecialchars($comment['username']); ?>
+                                    <span class="badge bg-secondary ms-2"><?php echo ucfirst($comment['role']); ?></span>
+                                </div>
+                                <div class="comment-text">
+                                    <?php echo htmlspecialchars($comment['comment_text']); ?>
+                                </div>
+                                <div class="comment-time">
+                                    <i class="fas fa-clock me-1"></i>
+                                    <?php echo date('F j, Y \a\t g:i A', strtotime($comment['created_at'])); ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         
@@ -81,7 +168,7 @@ include 'includes/header.php';
                         <form method="POST" action="vote.php">
                             <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
                             <input type="hidden" name="redirect" value="project.php?id=<?php echo $project['id']; ?>">
-                            <button type="submit" class="btn btn-danger btn-lg w-100">
+                            <button type="submit" class="btn btn-success btn-lg w-100">
                                 <i class="fas fa-heart me-2"></i>Vote for this Project
                             </button>
                         </form>

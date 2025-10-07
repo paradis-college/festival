@@ -185,4 +185,45 @@ function getYears() {
     $stmt = $pdo->query("SELECT DISTINCT year FROM projects ORDER BY year DESC");
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
+
+// Comment functions
+function addComment($user_id, $project_id, $comment_text) {
+    global $pdo;
+    
+    $stmt = $pdo->prepare("INSERT INTO comments (user_id, project_id, comment_text) VALUES (?, ?, ?)");
+    return $stmt->execute([$user_id, $project_id, $comment_text]);
+}
+
+function getComments($project_id) {
+    global $pdo;
+    
+    $stmt = $pdo->prepare("SELECT c.*, u.username, u.role 
+                          FROM comments c 
+                          JOIN users u ON c.user_id = u.id 
+                          WHERE c.project_id = ? 
+                          ORDER BY c.created_at DESC");
+    $stmt->execute([$project_id]);
+    return $stmt->fetchAll();
+}
+
+// Pre-written positive comments for easy selection
+function getPrewrittenComments() {
+    return [
+        "Excellent work! Very innovative approach.",
+        "This is a fantastic project! Well done!",
+        "Amazing research and presentation!",
+        "Great job on this project! Very impressive.",
+        "Wonderful scientific method demonstrated here.",
+        "Outstanding work! Keep it up!",
+        "This project shows great creativity and effort.",
+        "Very interesting findings! Great work!",
+        "Impressive results and clear presentation.",
+        "This is brilliant! Well researched and executed.",
+        "Excellent application of scientific principles!",
+        "Great contribution to science! Love it!",
+        "This is exactly what innovation looks like!",
+        "Inspiring work! Thank you for sharing.",
+        "Superb project! Very well done!"
+    ];
+}
 ?>
