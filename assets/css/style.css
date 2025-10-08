@@ -1,70 +1,101 @@
-/* Custom styles for Science Festival */
+/* 
+ * Custom styles for Science Festival
+ * International College Theme - Green & Blue Color Palette
+ * Easy to understand and modify
+ */
 
+/* Main body styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f0f7f4; /* Light green tint background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Hero section at top of homepage - uses green to blue gradient */
 .hero-section {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 50%, #17a2b8 100%);
     border-radius: 15px;
-}
-
-.stat-item {
-    padding: 20px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.project-card {
-    transition: all 0.3s ease;
-    border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Statistics boxes in hero section */
+.stat-item {
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Project cards - these show each project */
+.project-card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    border-left: 4px solid #28a745; /* Green accent on left */
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
+    border-left-color: #17a2b8; /* Changes to blue on hover */
+}
+
+/* Vote display styling */
 .vote-display {
     display: flex;
     align-items: center;
     gap: 5px;
     font-weight: bold;
+    color: #dc3545; /* Red for heart icon */
 }
 
 .vote-display-large {
     text-align: center;
 }
 
+/* Vote button with green theme */
 .vote-btn {
     transition: all 0.3s ease;
+    border-color: #28a745 !important;
+    color: #28a745 !important;
 }
 
 .vote-btn:hover {
     transform: scale(1.05);
+    background-color: #28a745 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
+/* Project content styling - for full project view */
 .project-content h1,
 .project-content h2,
 .project-content h3,
 .project-content h4,
 .project-content h5,
 .project-content h6 {
-    color: #333;
+    color: #1e7e34; /* Dark green for headers */
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
 .project-content h1 {
-    border-bottom: 2px solid #007bff;
+    border-bottom: 3px solid #28a745; /* Green border */
     padding-bottom: 0.5rem;
 }
 
 .project-content h2 {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 2px solid #17a2b8; /* Blue border */
     padding-bottom: 0.3rem;
 }
 
@@ -81,49 +112,87 @@ body {
     font-style: italic;
 }
 
+/* Navbar/Header branding */
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+/* General card styling */
 .card {
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
 }
 
+/* Card headers with green-blue gradient */
 .card-header {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    background: linear-gradient(135deg, #28a745 0%, #17a2b8 100%);
     color: white;
-    border-radius: 10px 10px 0 0 !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 1rem 1.25rem;
 }
 
+/* Primary buttons with green theme */
+.btn-primary {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1.5rem;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #17a2b8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* General button styling */
 .btn {
     border-radius: 25px;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .btn:hover {
     transform: translateY(-2px);
 }
 
+/* Badge/tag styling */
 .badge {
     font-size: 0.75rem;
     padding: 0.5rem 0.75rem;
     border-radius: 15px;
+    font-weight: 600;
 }
 
+/* Alert messages */
 .alert {
     border-radius: 10px;
     border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Footer spacing */
 footer {
     margin-top: auto;
+    background: linear-gradient(135deg, #1e7e34 0%, #17a2b8 100%);
 }
 
-/* Responsive adjustments */
+/* Custom navbar with green-blue theme */
+.navbar-dark.bg-primary {
+    background: linear-gradient(90deg, #28a745 0%, #17a2b8 100%) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments for mobile devices */
 @media (max-width: 768px) {
+    /* Hero section - smaller on mobile */
     .hero-section {
         padding: 2rem 0 !important;
     }
@@ -135,6 +204,106 @@ footer {
     .stat-item h3 {
         font-size: 1.5rem;
     }
+    
+    /* Stack filter and sort on mobile */
+    .row.mb-4 form {
+        flex-direction: column;
+    }
+    
+    .row.mb-4 form label {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Full width buttons on mobile */
+    .btn-lg {
+        padding: 0.8rem 1rem;
+    }
+    
+    /* Navbar adjustments */
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* Additional polish and animations */
+.card {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.btn-outline-info:hover {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+/* Success button styling */
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #17a589 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* Info button styling */
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    border: none;
+    color: white;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #138496 0%, #0f6674 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+/* Shadow effect on cards */
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Smooth page transitions */
+body {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Link styling */
+a {
+    transition: all 0.2s ease;
+}
+
+/* Badge improvements */
+.badge.bg-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+}
+
+.badge.bg-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%) !important;
 }
 
 /* Animation for vote button */
@@ -154,20 +323,78 @@ footer {
     animation: pulse 0.3s ease;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar with green theme */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #f0f7f4;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #007bff;
-    border-radius: 4px;
+    background: linear-gradient(180deg, #28a745 0%, #17a2b8 100%);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
+    background: linear-gradient(180deg, #1e7e34 0%, #138496 100%);
+}
+
+/* Comments section styling */
+.comments-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.comment-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8f9fa;
+    border-left: 3px solid #28a745;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+    background: #e9f7ef;
+    border-left-color: #17a2b8;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #1e7e34;
+    margin-bottom: 0.5rem;
+}
+
+.comment-text {
+    color: #495057;
+    line-height: 1.6;
+}
+
+.comment-time {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Pre-written comment buttons */
+.quick-comment-btn {
+    margin: 0.25rem;
+    background: #e9f7ef;
+    border: 1px solid #28a745;
+    color: #1e7e34;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.quick-comment-btn:hover {
+    background: #28a745;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
 }
