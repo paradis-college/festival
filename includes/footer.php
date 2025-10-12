@@ -7,10 +7,20 @@
                 <!-- Left side - branding -->
                 <div class="col-md-6 mb-3 mb-md-0">
                     <h5 class="mb-2">
-                        <i class="fas fa-graduation-cap me-2"></i>International Science Festival
+                        <i class="fas fa-flask me-2"></i>Nikola Tesla Science Festival
                     </h5>
-                    <p class="mb-1">Showcasing innovative science projects from students worldwide.</p>
-                    <p class="mb-0 small">Building tomorrow's scientists and innovators today.</p>
+                    <p class="mb-1">Showcasing innovative science projects from students at Paradis College.</p>
+                    <p class="mb-2 small">Building tomorrow's scientists and innovators today.</p>
+                    <p class="mb-0 small">
+                        <i class="fas fa-link me-1"></i>
+                        <a href="https://paradis-college.ro" target="_blank" class="text-light text-decoration-none">
+                            Visit Paradis College
+                        </a>
+                        <span class="mx-2">•</span>
+                        <a href="https://mechabyte.paradis-college.ro" target="_blank" class="text-light text-decoration-none">
+                            MechaByte Robotics
+                        </a>
+                    </p>
                 </div>
                 <!-- Right side - links and copyright -->
                 <div class="col-md-6 text-md-end">
@@ -31,9 +41,9 @@
                         </a>
                         <?php endif; ?>
                     </div>
-                    <p class="mb-1">&copy; <?php echo date('Y'); ?> International Science Festival</p>
+                    <p class="mb-1">&copy; <?php echo date('Y'); ?> Nikola Tesla Science Festival - Paradis College</p>
                     <small class="text-light opacity-75">
-                        <i class="fas fa-globe me-1"></i>Empowering Education Worldwide
+                        <i class="fas fa-flask me-1"></i>Empowering Education Through Science
                     </small>
                 </div>
             </div>

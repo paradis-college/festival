@@ -341,6 +341,118 @@ a {
     background: linear-gradient(180deg, #1e7e34 0%, #138496 100%);
 }
 
+/* Project Carousel Styling */
+.carousel-project-card {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e7e34 0%, #17a2b8 100%);
+    padding: 3rem 2rem;
+}
+
+.carousel-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.9) 0%, rgba(23, 162, 184, 0.9) 100%);
+    z-index: 1;
+}
+
+.carousel-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carousel-badge-container {
+    margin-bottom: 1.5rem;
+}
+
+.carousel-badge-container .badge {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.carousel-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-author {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+}
+
+.carousel-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.carousel-btn-container {
+    margin-top: 1.5rem;
+}
+
+.carousel-item a {
+    display: block;
+    text-decoration: none;
+}
+
+.carousel-item a:hover .carousel-project-card {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(40, 167, 69, 0.8);
+    border-radius: 50%;
+    padding: 1.5rem;
+}
+
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-indicators button.active {
+    background-color: white;
+}
+
+/* Responsive carousel adjustments */
+@media (max-width: 768px) {
+    .carousel-project-card {
+        min-height: 300px;
+        padding: 2rem 1rem;
+    }
+    
+    .carousel-title {
+        font-size: 1.8rem;
+    }
+    
+    .carousel-author {
+        font-size: 1rem;
+    }
+    
+    .carousel-description {
+        font-size: 0.95rem;
+    }
+}
+
 /* Comments section styling */
 .comments-section {
     margin-top: 2rem;

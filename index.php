@@ -28,9 +28,9 @@ include 'includes/header.php';
     <div class="container text-center">
         <!-- Main heading -->
         <h1 class="display-4 fw-bold mb-4">
-            <i class="fas fa-globe-americas me-3"></i>International Science Festival
+            <i class="fas fa-flask me-3"></i>Nikola Tesla Science Festival
         </h1>
-        <p class="lead mb-4">Discover innovative science projects from students around the world</p>
+        <p class="lead mb-4">Discover innovative science projects from students at Paradis College</p>
         
         <!-- Statistics boxes showing project data -->
         <div class="row">
@@ -66,6 +66,98 @@ include 'includes/header.php';
                     <p class="mb-0">Community Votes</p>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Project Carousel - Showcase featured projects -->
+<?php 
+// Get top voted projects for carousel
+$carouselProjects = getProjects(null, 5); // Get top 5 projects
+if (!empty($carouselProjects)): 
+?>
+<div class="mb-5">
+    <h2 class="mb-4 text-center">
+        <i class="fas fa-star me-2 text-warning"></i>Featured Projects Showcase
+    </h2>
+    <div id="projectCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <!-- Carousel indicators -->
+        <div class="carousel-indicators">
+            <?php foreach ($carouselProjects as $index => $project): ?>
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="<?php echo $index; ?>" 
+                        <?php echo $index === 0 ? 'class="active" aria-current="true"' : ''; ?>
+                        aria-label="Slide <?php echo $index + 1; ?>"></button>
+            <?php endforeach; ?>
+        </div>
+        
+        <!-- Carousel items -->
+        <div class="carousel-inner rounded shadow-lg">
+            <?php foreach ($carouselProjects as $index => $project): ?>
+                <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                    <a href="project.php?id=<?php echo $project['id']; ?>" class="text-decoration-none">
+                        <div class="carousel-project-card">
+                            <div class="carousel-gradient-overlay"></div>
+                            <div class="carousel-content">
+                                <div class="carousel-badge-container">
+                                    <span class="badge bg-success fs-5"><?php echo $project['year']; ?></span>
+                                    <span class="badge bg-danger fs-5">
+                                        <i class="fas fa-heart me-1"></i><?php echo $project['vote_count']; ?>
+                                    </span>
+                                </div>
+                                <h2 class="carousel-title"><?php echo htmlspecialchars($project['title']); ?></h2>
+                                <p class="carousel-author">
+                                    <i class="fas fa-user-circle me-2"></i>by <?php echo htmlspecialchars($project['author_name']); ?>
+                                </p>
+                                <?php if ($project['description']): ?>
+                                    <p class="carousel-description">
+                                        <?php echo htmlspecialchars(substr($project['description'], 0, 150)); ?>
+                                        <?php echo strlen($project['description']) > 150 ? '...' : ''; ?>
+                                    </p>
+                                <?php endif; ?>
+                                <div class="carousel-btn-container">
+                                    <span class="btn btn-light btn-lg">
+                                        <i class="fas fa-arrow-right me-2"></i>View Project
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <!-- Carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<?php endif; ?>
+
+<!-- Legacy Projects Reference Section -->
+<div class="alert alert-info mb-5 shadow-sm" style="border-left: 4px solid #17a2b8;">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <h5 class="mb-2">
+                <i class="fas fa-history me-2"></i>Looking for Previous Editions?
+            </h5>
+            <p class="mb-2">
+                Browse projects from our previous Nikola Tesla Science Festival editions and archived collections.
+            </p>
+            <p class="mb-0 small text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                Legacy projects from 2015-2022 are available in our archive.
+            </p>
+        </div>
+        <div class="col-md-3 text-md-end mt-3 mt-md-0">
+            <a href="legacy-projects.php" class="btn btn-info">
+                <i class="fas fa-archive me-2"></i>View Archive
+            </a>
         </div>
     </div>
 </div>

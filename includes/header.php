@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Page title - shows in browser tab -->
-    <title><?php echo isset($title) ? $title . ' - ' : ''; ?>International Science Festival</title>
+    <title><?php echo isset($title) ? $title . ' - ' : ''; ?>Nikola Tesla Science Festival - Paradis College</title>
     
     <!-- External CSS libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
         <div class="container">
             <!-- Site logo and name -->
             <a class="navbar-brand" href="index.php">
-                <i class="fas fa-graduation-cap me-2"></i>International Science Festival
+                <i class="fas fa-flask me-2"></i>Nikola Tesla Science Festival
             </a>
             
             <!-- Mobile menu toggle button -->
@@ -41,6 +41,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="projects.php">
                             <i class="fas fa-folder-open me-1"></i>All Projects
+                        </a>
+                    </li>
+                    <!-- Link to MechaByte project -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mechabyte.paradis-college.ro" target="_blank">
+                            <i class="fas fa-robot me-1"></i>MechaByte
                         </a>
                     </li>
                     <!-- Only teachers and admins can see the upload button -->
