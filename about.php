@@ -29,7 +29,7 @@ include 'includes/header.php';
 </section>
 
 <div class="container">
-  <img src="assets/images/experiments kids.jpg" alt="Notebook" style="width:100%;">
+  <img src="assets/images/experiments kids.jpg" alt="Children conducting science experiments" style="width:100%;">
   <div class="content">
     <h1>Science Fair</h1>
     <p>Inspired by the genius of Nikola Tesla, our Science Fair Festival celebrates the power of imagination, innovation, and discovery. It is where ideas spark into reality, where students transform curiosity into invention, and where the next generation of creators dares to shape the future — just as Tesla did.</p>
