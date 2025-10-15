@@ -117,8 +117,8 @@ body {
 
 /* Ensure card body text is readable */
 .card-body {
-    background-color: #ffffff;
-    color: #333;
+    background-color: #ffffff !important;
+    color: #333 !important;
 }
 
 /* Card headers ensure white text */
@@ -145,6 +145,11 @@ body {
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
+    background: #ffffff !important;
+    color: #333 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 0 !important;
 }
 
 /* Card headers with green-blue gradient */
@@ -500,6 +505,44 @@ a {
     color: #212529;
     margin-bottom: 0.5rem;
     display: block;
+}
+
+/* Ensure all card text elements are dark for readability */
+.card,
+.card p,
+.card small,
+.card .text-muted,
+.card .form-text,
+.card dd,
+.card dt,
+.card .comment-text,
+.card .comment-time {
+    color: #333 !important;
+}
+
+/* Keep only intentionally colored elements */
+.card .alert-link,
+.card a:not(.btn) {
+    color: #28a745 !important;
+}
+
+.card .alert-link:hover,
+.card a:not(.btn):hover {
+    color: #1e7e34 !important;
+}
+
+/* Ensure alert info text is readable */
+.card .alert-info {
+    color: #004085 !important;
+}
+
+.card .alert-info .text-muted {
+    color: #004085 !important;
+}
+
+/* Ensure badges remain visible */
+.card .badge {
+    color: #fff !important;
 }
 
 /* Login form inputs - improved visibility */
