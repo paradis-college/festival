@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/functions.php';
 $title = 'About Us';
 include 'includes/header.php';
 ?>

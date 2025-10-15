@@ -102,14 +102,32 @@ body {
 .project-content p {
     line-height: 1.6;
     margin-bottom: 1rem;
+    color: #333; /* Ensure good contrast */
 }
 
 .project-content strong {
-    color: #333;
+    color: #222; /* Darker for emphasis */
+    font-weight: 600;
 }
 
 .project-content em {
     font-style: italic;
+    color: #444;
+}
+
+/* Ensure card body text is readable */
+.card-body {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Card headers ensure white text */
+.card-header h3,
+.card-header h4,
+.card-header h5,
+.card-header h6,
+.card-header .text-muted {
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Navbar/Header branding */
