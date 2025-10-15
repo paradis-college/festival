@@ -119,3 +119,15 @@ const images = document.querySelectorAll('.column img');
 })();
 
 
+// Highlight active page in navbar
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.php';
+  const navLinks = document.querySelectorAll('#navbar a');
+  
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || (currentPage === '' && href === 'index.php')) {
+      link.classList.add('active');
+    }
+  });
+});

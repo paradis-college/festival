@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/functions.php';
 $title = 'Community';
 include 'includes/header.php';
 ?>
