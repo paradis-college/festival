@@ -2,6 +2,7 @@
 /tmp/
 *.tmp
 *.temp
+*.backup
 
 # Database files (if using SQLite)
 *.db

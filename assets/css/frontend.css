@@ -5,6 +5,36 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* Site header styles */
+.site-header {
+    text-align: center;
+    background-color: rgb(3, 4, 72);
+    color: white;
+    padding: 30px 20px;
+}
+
+.site-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-header .logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.site-header .logo span {
+    color: #6ee7ff;
+}
+
+.site-header .tagline {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
 .column {
   float: left;
   width: 25%;
@@ -139,7 +169,7 @@ body, html {
 /* The hero image */
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("vote image.webp");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/vote image.webp");
 
   /* Set a specific height */
   height: 80%;
@@ -188,12 +218,12 @@ body, html {
 }
 
 /* Images used */
-.img1 { background-image: url("PHOTO-2025-10-08-18-53-15 copy.jpg"); }
-.img2 { background-image: url("IMG_5550.jpeg"); }
-.img3 { background-image: url("PHOTO-2025-10-08-18-51-59.jpg"); }
-.img4 { background-image: url("PHOTO-2025-10-08-18-53-10.jpg"); }
-.img5 { background-image: url("photo school.jpg"); }
-.img6 { background-image: url("NK present.jpg"); }
+.img1 { background-image: url("../images/PHOTO-2025-10-08-18-53-15 copy.jpg"); }
+.img2 { background-image: url("../images/IMG_5550.jpeg"); }
+.img3 { background-image: url("../images/PHOTO-2025-10-08-18-51-59.jpg"); }
+.img4 { background-image: url("../images/PHOTO-2025-10-08-18-53-10.jpg"); }
+.img5 { background-image: url("../images/photo school.jpg"); }
+.img6 { background-image: url("../images/NK present.jpg"); }
 
 /* Position text in the middle of the page/image */
 .bg-text {
