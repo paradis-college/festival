@@ -12,26 +12,53 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Our custom styles - you can edit this file to change colors and design -->
+    <!-- Our custom styles -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/frontend.css" rel="stylesheet">
+    
+    <!-- Frontend JS -->
+    <script src="assets/js/frontend.js" defer></script>
 </head>
 <body>
-    <!-- Top navigation bar - contains logo and menu items -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- Frontend sticky navbar -->
+    <div id="navbar">
+        <a href="index.php">Home</a>
+        <a href="news.php">News</a>
+        <a href="projects.php">Projects</a>
+        <a href="about.php">About Us</a>
+        <a href="community.php">Community</a>
+        <?php if (isLoggedIn()): ?>
+            <a href="logout.php" style="float:right">Logout (<?php echo $_SESSION['username']; ?>)</a>
+            <?php if (isTeacher() || isAdmin()): ?>
+                <a href="upload.php" style="float:right">Upload Project</a>
+            <?php endif; ?>
+        <?php else: ?>
+            <a href="login.php" style="float:right">Login</a>
+            <a href="register.php" style="float:right">Register</a>
+        <?php endif; ?>
+    </div>
+    
+    <!-- Site header with logo -->
+    <header class="site-header">
         <div class="container">
-            <!-- Site logo and name -->
+            <h1 class="logo">⚡ Nikola Tesla Festival – <span>Paradis College</span></h1>
+            <p class="tagline">Discover brilliant student projects!</p>
+            <img src="assets/images/download paradis college.png" style="width:10%">
+        </div>
+    </header>
+
+    <!-- Bootstrap navigation (hidden, kept for compatibility) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="display:none;">
+        <div class="container">
             <a class="navbar-brand" href="index.php">
                 <i class="fas fa-flask me-2"></i>Nikola Tesla Science Festival
             </a>
             
-            <!-- Mobile menu toggle button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <!-- Navigation menu items -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Left side menu -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">
@@ -40,16 +67,24 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="projects.php">
-                            <i class="fas fa-folder-open me-1"></i>All Projects
+                            <i class="fas fa-folder-open me-1"></i>Projects
                         </a>
                     </li>
-                    <!-- Link to MechaByte project -->
                     <li class="nav-item">
-                        <a class="nav-link" href="https://mechabyte.paradis-college.ro" target="_blank">
-                            <i class="fas fa-robot me-1"></i>MechaByte
+                        <a class="nav-link" href="news.php">
+                            <i class="fas fa-newspaper me-1"></i>News
                         </a>
                     </li>
-                    <!-- Only teachers and admins can see the upload button -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.php">
+                            <i class="fas fa-info-circle me-1"></i>About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.php">
+                            <i class="fas fa-users me-1"></i>Community
+                        </a>
+                    </li>
                     <?php if (isTeacher() || isAdmin()): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="upload.php">
@@ -61,7 +96,6 @@
                 
                 <!-- Right side menu - user account section -->
                 <ul class="navbar-nav">
-                    <!-- Show this if user is logged in -->
                     <?php if (isLoggedIn()): ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
@@ -77,7 +111,6 @@
                                 </a></li>
                             </ul>
                         </li>
-                    <!-- Show login/register buttons if not logged in -->
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">
