@@ -1,4 +1,4 @@
-let slideIndex = 0;
+let slideIndex = 1;
 
 // Next/previous controls
 function plusSlides(n) {
