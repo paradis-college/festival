@@ -1,34 +1,46 @@
-
-let slideIndex = 1;
-showSlides(slideIndex);
-currentSlide
+let slideIndex = 0;
 
 // Next/previous controls
 function plusSlides(n) {
+  clearTimeout(slideTimeout);
   showSlides(slideIndex += n);
-  currentSlide
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
+  clearTimeout(slideTimeout);
   showSlides(slideIndex = n);
-  currentSlide
 }
 
+let slideTimeout;
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
+  
+  if (slides.length === 0) return; // Guard against no slides
+  
+  if (n === undefined) {
+    slideIndex++;
+  } else {
+    slideIndex = n;
+  }
+  
+  if (slideIndex > slides.length) {slideIndex = 1}
+  if (slideIndex < 1) {slideIndex = slides.length}
+  
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
+  
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
+  
+  // Auto advance to next slide after 5 seconds
+  slideTimeout = setTimeout(showSlides, 5000);
 }
 
 function showPdf() {
@@ -73,8 +85,10 @@ const images = document.querySelectorAll('.column img');
 
   /*news pdf try*/
   (function(){
+  const modal = document.getElementById('pdfModal');
+  if (!modal) return; // Exit if PDF modal doesn't exist on this page
+  
   const openers = document.querySelectorAll('.open-pdf');
-  const modal   = document.getElementById('pdfModal');
   const frame   = document.getElementById('pdfFrame');
   const titleEl = document.getElementById('pdfTitle');
   const dlLink  = document.getElementById('pdfDownload');
@@ -130,4 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
       link.classList.add('active');
     }
   });
+  
+  // Initialize slideshow
+  showSlides();
 });

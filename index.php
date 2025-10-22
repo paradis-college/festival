@@ -128,11 +128,4 @@ include 'includes/header.php';
   </div>
 </section>
 
-<script>
-  // Initialize slideshow on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    currentSlide(1);
-  });
-</script>
-
 <?php include 'includes/footer.php'; ?>
