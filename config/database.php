@@ -22,6 +22,7 @@ try {
             title VARCHAR(200) NOT NULL,
             description TEXT,
             content TEXT NOT NULL,
+            media_url TEXT,
             author_id INTEGER NOT NULL,
             year INTEGER NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -50,6 +51,23 @@ try {
             FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
         );
     ");
+    
+    // Migration: Add media_url column if it doesn't exist (backward compatibility)
+    try {
+        $columns = $pdo->query("PRAGMA table_info(projects)")->fetchAll(PDO::FETCH_ASSOC);
+        $hasMediaUrl = false;
+        foreach ($columns as $column) {
+            if ($column['name'] === 'media_url') {
+                $hasMediaUrl = true;
+                break;
+            }
+        }
+        if (!$hasMediaUrl) {
+            $pdo->exec("ALTER TABLE projects ADD COLUMN media_url TEXT");
+        }
+    } catch(PDOException $e) {
+        // Column might already exist or other error - continue
+    }
     
     // Check if we need to insert sample data
     $stmt = $pdo->query("SELECT COUNT(*) FROM users");

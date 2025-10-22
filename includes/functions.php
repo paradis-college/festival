@@ -111,18 +111,18 @@ function getProject($id) {
     return $stmt->fetch();
 }
 
-function createProject($title, $description, $content, $author_id, $year) {
+function createProject($title, $description, $content, $author_id, $year, $media_url = null) {
     global $pdo;
     
-    $stmt = $pdo->prepare("INSERT INTO projects (title, description, content, author_id, year) VALUES (?, ?, ?, ?, ?)");
-    return $stmt->execute([$title, $description, $content, $author_id, $year]);
+    $stmt = $pdo->prepare("INSERT INTO projects (title, description, content, media_url, author_id, year) VALUES (?, ?, ?, ?, ?, ?)");
+    return $stmt->execute([$title, $description, $content, $media_url, $author_id, $year]);
 }
 
-function updateProject($id, $title, $description, $content, $year) {
+function updateProject($id, $title, $description, $content, $year, $media_url = null) {
     global $pdo;
     
-    $stmt = $pdo->prepare("UPDATE projects SET title = ?, description = ?, content = ?, year = ? WHERE id = ?");
-    return $stmt->execute([$title, $description, $content, $year, $id]);
+    $stmt = $pdo->prepare("UPDATE projects SET title = ?, description = ?, content = ?, year = ?, media_url = ? WHERE id = ?");
+    return $stmt->execute([$title, $description, $content, $year, $media_url, $id]);
 }
 
 function deleteProject($id) {
@@ -177,6 +177,50 @@ function parseMarkdown($content) {
     $content = nl2br($content);
     
     return $content;
+}
+
+// Extract YouTube video ID from various YouTube URL formats
+function extractYouTubeId($url) {
+    if (empty($url)) {
+        return null;
+    }
+    
+    $patterns = [
+        '/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/',
+        '/youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]{11})/',
+    ];
+    
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $url, $matches)) {
+            return $matches[1];
+        }
+    }
+    
+    return null;
+}
+
+// Render embedded media (YouTube videos)
+function renderEmbeddedMedia($media_url) {
+    if (empty($media_url)) {
+        return '';
+    }
+    
+    $youtubeId = extractYouTubeId($media_url);
+    
+    if ($youtubeId) {
+        // Render YouTube embed with responsive wrapper
+        return '<div class="ratio ratio-16x9 mb-4">
+            <iframe src="https://www.youtube.com/embed/' . htmlspecialchars($youtubeId) . '" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>';
+    }
+    
+    // If not a YouTube URL, return empty (could be extended for other video platforms)
+    return '';
 }
 
 function getYears() {

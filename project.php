@@ -43,6 +43,16 @@ include 'includes/header.php';
                     </div>
                 <?php endif; ?>
                 
+                <?php 
+                // Display embedded media if available
+                $embeddedMedia = renderEmbeddedMedia($project['media_url'] ?? '');
+                if ($embeddedMedia): 
+                ?>
+                    <div class="embedded-media mb-4">
+                        <?php echo $embeddedMedia; ?>
+                    </div>
+                <?php endif; ?>
+                
                 <div class="project-content">
                     <?php echo parseMarkdown($project['content']); ?>
                 </div>
