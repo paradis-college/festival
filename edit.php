@@ -21,8 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description']);
     $content = trim($_POST['content']);
     $year = intval($_POST['year']);
+    $media_url = trim($_POST['media_url'] ?? '');
     
-    if (updateProject($id, $title, $description, $content, $year)) {
+    if (updateProject($id, $title, $description, $content, $year, $media_url)) {
         header("Location: project.php?id=$id&success=update");
         exit();
     } else {
@@ -54,6 +55,18 @@ include 'includes/header.php';
                     <div class="mb-3">
                         <label for="description" class="form-label">Short Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3"><?php echo htmlspecialchars($project['description']); ?></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="media_url" class="form-label">
+                            <i class="fas fa-video me-1"></i>Media URL (YouTube Video)
+                        </label>
+                        <input type="url" class="form-control" id="media_url" name="media_url" 
+                               value="<?php echo htmlspecialchars($project['media_url'] ?? ''); ?>" 
+                               placeholder="https://www.youtube.com/watch?v=...">
+                        <div class="form-text">
+                            Paste a YouTube video URL to embed it in your project (e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+                        </div>
                     </div>
                     
                     <div class="mb-3">

@@ -9,6 +9,7 @@ A PHP-based website for showcasing science projects from the Nikola Tesla Scienc
 - **Project Display**: Browse and search science projects with modern card-based layout
 - **User Authentication**: Login system for teachers and students
 - **Project Upload**: Teachers can upload projects in Markdown format
+- **YouTube Video Embedding**: Embed YouTube videos directly in project pages (NEW!)
 - **Voting System**: Users can vote for their favorite projects
 - **Comments System**: Engage with projects through comments
 - **PDF Viewer**: View festival newsletters and magazines
@@ -154,6 +155,7 @@ festival/
 ## Documentation
 
 - **README.md** - This file, overview and quick start guide
+- **YOUTUBE_EMBEDDING_GUIDE.md** - Guide for embedding YouTube videos in projects (NEW!)
 - **FRONTEND_INTEGRATION.md** - Detailed frontend integration documentation
 - **DEVELOPER_GUIDE.md** - Guide for developers and students
 
