@@ -79,7 +79,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .hero {
-  background: linear-gradient(135deg, #1E1E1E 0%, #2a2a2a 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
   color: white;
   padding: 3rem 2rem;
   text-align: center;
@@ -114,10 +114,10 @@ const t = computed(() => translations[props.lang])
 }
 
 h2 {
-  color: #1E1E1E;
+  color: #1a1a1a;
   font-size: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #FF6A13;
+  border-bottom: 3px solid #00FF00;
   padding-bottom: 0.5rem;
 }
 
@@ -134,7 +134,7 @@ h2 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 4px solid #2a2a2a;
+  border-top: 4px solid #333333;
 }
 
 .detail-card:hover {
@@ -148,7 +148,7 @@ h2 {
 }
 
 .detail-card h3 {
-  color: #1E1E1E;
+  color: #1a1a1a;
   font-size: 1.3rem;
   margin-bottom: 0.75rem;
 }

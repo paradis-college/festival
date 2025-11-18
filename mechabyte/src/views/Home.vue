@@ -46,7 +46,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .hero {
-  background: linear-gradient(135deg, #1E1E1E 0%, #2a2a2a 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
@@ -71,7 +71,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .mission {
-  background-color: #FF6A13;
+  background-color: #00FF00;
   color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -91,10 +91,10 @@ const t = computed(() => translations[props.lang])
 }
 
 h2 {
-  color: #1E1E1E;
+  color: #1a1a1a;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  border-bottom: 3px solid #FF6A13;
+  border-bottom: 3px solid #00FF00;
   padding-bottom: 0.5rem;
 }
 
@@ -115,7 +115,7 @@ h2 {
   padding: 1rem 1.5rem;
   margin-bottom: 0.75rem;
   border-radius: 6px;
-  border-left: 4px solid #FF6A13;
+  border-left: 4px solid #00FF00;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1.05rem;
   transition: transform 0.2s ease;
