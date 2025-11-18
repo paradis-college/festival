@@ -37,3 +37,8 @@ vendor/
 
 # Node modules (if using)
 node_modules/
+
+# Build artifacts
+dist/
+build/
+.vite/
