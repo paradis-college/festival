@@ -50,12 +50,12 @@ defineEmits<{
 
 <style scoped>
 .navbar {
-  background-color: #1a1a2e;
+  background-color: #1E1E1E;
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -87,20 +87,20 @@ defineEmits<{
 }
 
 .nav-links a:hover {
-  background-color: #16213e;
-  color: #ffffff;
+  background-color: #2a2a2a;
+  color: #FF6A13;
 }
 
 .nav-links a.active,
 .nav-links a.router-link-active {
-  background-color: #0f3460;
+  background-color: #FF6A13;
   color: #ffffff;
 }
 
 .language-toggle {
   display: flex;
   gap: 0.5rem;
-  background-color: #16213e;
+  background-color: #2a2a2a;
   border-radius: 4px;
   padding: 0.25rem;
 }
@@ -118,12 +118,12 @@ defineEmits<{
 }
 
 .language-toggle button:hover {
-  background-color: #0f3460;
-  color: #ffffff;
+  background-color: #3a3a3a;
+  color: #FF6A13;
 }
 
 .language-toggle button.active {
-  background-color: #e94560;
+  background-color: #FF6A13;
   color: #ffffff;
 }
 

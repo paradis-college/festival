@@ -78,7 +78,7 @@ const getInitials = (name: string): string => {
 }
 
 .hero {
-  background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+  background: linear-gradient(135deg, #2a2a2a 0%, #1E1E1E 100%);
   color: white;
   padding: 3rem 2rem;
   text-align: center;
@@ -114,10 +114,10 @@ const getInitials = (name: string): string => {
 }
 
 h2 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #e94560;
+  border-bottom: 3px solid #FF6A13;
   padding-bottom: 0.5rem;
 }
 
@@ -145,7 +145,7 @@ h2 {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0f3460 0%, #e94560 100%);
+  background: linear-gradient(135deg, #2a2a2a 0%, #FF6A13 100%);
   color: white;
   display: flex;
   align-items: center;
@@ -156,7 +156,7 @@ h2 {
 }
 
 .member-card h3 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
@@ -179,7 +179,7 @@ h2 {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border-top: 4px solid #e94560;
+  border-top: 4px solid #FF6A13;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -192,7 +192,7 @@ h2 {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+  background: linear-gradient(135deg, #FF6A13 0%, #2a2a2a 100%);
   color: white;
   display: flex;
   align-items: center;
@@ -203,7 +203,7 @@ h2 {
 }
 
 .mentor-card h3 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }

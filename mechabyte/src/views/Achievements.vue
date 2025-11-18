@@ -46,7 +46,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .hero {
-  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  background: linear-gradient(135deg, #1E1E1E 0%, #2a2a2a 100%);
   color: white;
   padding: 3rem 2rem;
   text-align: center;
@@ -86,7 +86,7 @@ const t = computed(() => translations[props.lang])
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, #e94560 0%, #0f3460 100%);
+  background: linear-gradient(180deg, #FF6A13 0%, #2a2a2a 100%);
   transform: translateX(-50%);
 }
 
@@ -113,7 +113,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .timeline-year {
-  background-color: #e94560;
+  background-color: #FF6A13;
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
@@ -134,13 +134,13 @@ const t = computed(() => translations[props.lang])
 .timeline-item-left .timeline-content {
   margin-right: auto;
   text-align: right;
-  border-right: 4px solid #0f3460;
+  border-right: 4px solid #2a2a2a;
 }
 
 .timeline-item-right .timeline-content {
   margin-left: auto;
   text-align: left;
-  border-left: 4px solid #0f3460;
+  border-left: 4px solid #2a2a2a;
 }
 
 .timeline-content:hover {
@@ -149,7 +149,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .timeline-content h3 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
@@ -185,7 +185,7 @@ const t = computed(() => translations[props.lang])
   .timeline-content {
     width: 100%;
     text-align: left !important;
-    border-left: 4px solid #0f3460 !important;
+    border-left: 4px solid #2a2a2a !important;
     border-right: none !important;
   }
 

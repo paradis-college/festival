@@ -50,7 +50,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .hero {
-  background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+  background: linear-gradient(135deg, #2a2a2a 0%, #1E1E1E 100%);
   color: white;
   padding: 3rem 2rem;
   text-align: center;
@@ -91,7 +91,7 @@ const t = computed(() => translations[props.lang])
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 4px solid #e94560;
+  border-top: 4px solid #FF6A13;
 }
 
 .value-card:hover {
@@ -100,7 +100,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .value-card h3 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -116,7 +116,7 @@ const t = computed(() => translations[props.lang])
 }
 
 .ambassador-box {
-  background: linear-gradient(135deg, #e94560 0%, #d63450 100%);
+  background: linear-gradient(135deg, #FF6A13 0%, #E55A00 100%);
   color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -138,10 +138,10 @@ const t = computed(() => translations[props.lang])
 }
 
 h2 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  border-bottom: 3px solid #e94560;
+  border-bottom: 3px solid #FF6A13;
   padding-bottom: 0.5rem;
 }
 

@@ -71,7 +71,7 @@ const getInitials = (name: string): string => {
 }
 
 .hero {
-  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  background: linear-gradient(135deg, #1E1E1E 0%, #2a2a2a 100%);
   color: white;
   padding: 3rem 2rem;
   text-align: center;
@@ -106,10 +106,10 @@ const getInitials = (name: string): string => {
 }
 
 h2 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #e94560;
+  border-bottom: 3px solid #FF6A13;
   padding-bottom: 0.5rem;
 }
 
@@ -126,7 +126,7 @@ h2 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 4px solid #0f3460;
+  border-top: 4px solid #2a2a2a;
 }
 
 .sponsor-card:hover {
@@ -138,7 +138,7 @@ h2 {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+  background: linear-gradient(135deg, #FF6A13 0%, #2a2a2a 100%);
   color: white;
   display: flex;
   align-items: center;
@@ -149,7 +149,7 @@ h2 {
 }
 
 .sponsor-card h3 {
-  color: #1a1a2e;
+  color: #1E1E1E;
   font-size: 1.1rem;
   line-height: 1.4;
 }
@@ -164,7 +164,7 @@ h2 {
   padding: 1rem 1.5rem;
   margin-bottom: 0.75rem;
   border-radius: 6px;
-  border-left: 4px solid #e94560;
+  border-left: 4px solid #FF6A13;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1.05rem;
   transition: transform 0.2s ease;
