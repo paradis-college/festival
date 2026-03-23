@@ -13,11 +13,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <!-- Our custom styles -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/frontend.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
     
-    <!-- Frontend JS -->
-    <script src="assets/js/frontend.js" defer></script>
+    <!-- Festival Main JavaScript - Optimized single file -->
+    <script src="assets/js/main.js" defer></script>
 </head>
 <body>
     <!-- Frontend sticky navbar -->
@@ -28,7 +27,7 @@
         <a href="about.php">About Us</a>
         <a href="community.php">Community</a>
         <?php if (isLoggedIn()): ?>
-            <a href="logout.php" style="float:right">Logout (<?php echo $_SESSION['username']; ?>)</a>
+            <a href="actions.php?action=logout" style="float:right">Logout (<?php echo $_SESSION['username']; ?>)</a>
             <?php if (isTeacher() || isAdmin()): ?>
                 <a href="upload.php" style="float:right">Upload Project</a>
             <?php endif; ?>
@@ -106,7 +105,7 @@
                                     <i class="fas fa-id-badge me-1"></i>Role: <?php echo ucfirst($_SESSION['role']); ?>
                                 </span></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="logout.php">
+                                <li><a class="dropdown-item" href="actions.php?action=logout">
                                     <i class="fas fa-sign-out-alt me-1"></i>Logout
                                 </a></li>
                             </ul>

@@ -93,7 +93,7 @@ include 'includes/header.php';
                         </div>
                         
                         <!-- Comment form -->
-                        <form method="POST" action="comment.php">
+                        <form method="POST" action="actions.php?action=comment">
                             <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
                             <div class="mb-3">
                                 <textarea class="form-control" id="comment_text" name="comment_text" 
@@ -171,16 +171,16 @@ include 'includes/header.php';
                             <i class="fas fa-check-circle"></i>
                             You have already voted for this project!
                         </div>
-                        <form method="POST" action="vote.php">
+                        <form method="POST" action="actions.php?action=vote">
                             <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
-                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="vote_action" value="remove">
                             <input type="hidden" name="redirect" value="project.php?id=<?php echo $project['id']; ?>">
                             <button type="submit" class="btn btn-outline-secondary btn-sm">
                                 Remove Vote
                             </button>
                         </form>
                     <?php else: ?>
-                        <form method="POST" action="vote.php">
+                        <form method="POST" action="actions.php?action=vote">
                             <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
                             <input type="hidden" name="redirect" value="project.php?id=<?php echo $project['id']; ?>">
                             <button type="submit" class="btn btn-success btn-lg w-100">
@@ -276,7 +276,7 @@ include 'includes/header.php';
 <script>
 function confirmDelete(projectId) {
     if (confirm('Are you sure you want to delete this project? This action cannot be undone.')) {
-        window.location.href = 'delete.php?id=' + projectId;
+        window.location.href = 'actions.php?action=delete&id=' + projectId;
     }
 }
 </script>

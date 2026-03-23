@@ -32,7 +32,7 @@
                             <i class="fas fa-folder-open me-1"></i>Projects
                         </a>
                         <?php if (isLoggedIn()): ?>
-                        <a href="logout.php" class="text-light text-decoration-none">
+                        <a href="actions.php?action=logout" class="text-light text-decoration-none">
                             <i class="fas fa-sign-out-alt me-1"></i>Logout
                         </a>
                         <?php else: ?>
