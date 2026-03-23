@@ -48,7 +48,7 @@ include 'includes/header.php';
                 $embeddedMedia = renderEmbeddedMedia($project['media_url'] ?? '');
                 if ($embeddedMedia): 
                 ?>
-                    <div class="embedded-media mb-4">
+                    <div class="embedded-media mb-4" role="region" aria-label="Project demonstration video">
                         <?php echo $embeddedMedia; ?>
                     </div>
                 <?php endif; ?>
@@ -84,7 +84,8 @@ include 'includes/header.php';
                                 foreach ($selected as $quickComment): 
                                 ?>
                                     <button type="button" class="btn btn-sm quick-comment-btn" 
-                                            onclick="document.getElementById('comment_text').value = '<?php echo addslashes($quickComment); ?>'">
+                                            onclick="document.getElementById('comment_text').value = '<?php echo addslashes($quickComment); ?>'"
+                                            aria-label="Use pre-written comment: <?php echo htmlspecialchars($quickComment); ?>">
                                         <?php echo htmlspecialchars($quickComment); ?>
                                     </button>
                                 <?php endforeach; ?>
@@ -96,7 +97,11 @@ include 'includes/header.php';
                             <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
                             <div class="mb-3">
                                 <textarea class="form-control" id="comment_text" name="comment_text" 
-                                          rows="3" placeholder="Write your comment here..." required></textarea>
+                                          rows="3" placeholder="Write your comment here..." 
+                                          aria-describedby="comment-help" required></textarea>
+                                <div id="comment-help" class="form-text mt-1">
+                                    Your comment will be visible to all users. Be respectful and constructive.
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-paper-plane me-2"></i>Post Comment

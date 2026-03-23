@@ -47,9 +47,13 @@ function showSlides(n) {
   slideTimeout = setTimeout(showSlides, 5000);
 }
 
+// PDF viewer functionality - fixed implementation
 function showPdf() {
-  console.log("ysh")
-     document.getElementsByClassName("pdf_test").style.display = 'block';
+    // Fixed to work with unique PDF IDs and show all PDF elements
+    const pdfElements = document.querySelectorAll('embed[id^="pdf_"]');
+    pdfElements.forEach(element => {
+        element.style.display = 'block';
+    });
 }
 
 

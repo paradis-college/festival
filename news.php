@@ -11,22 +11,22 @@ include 'includes/header.php';
   <div class="news-grid">
      <!-- News Item 1 -->
     <article class="news-card">
-      <embed id="pdf_test" src="assets/pdfs/Newsletter- DAY 1.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
+      <embed id="pdf_day1" src="assets/pdfs/Newsletter- DAY 1.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
     </article>
 
      <!-- News Item 2 -->
     <article class="news-card">
-      <embed id="pdf_test" src="assets/pdfs/Newsletter- DAY 2.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
+      <embed id="pdf_day2" src="assets/pdfs/Newsletter- DAY 2.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
     </article>
 
     <!-- News Item 3-->
     <article class="news-card">
-      <embed id="pdf_test" src="assets/pdfs/Newsletter- DAY 3.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
+      <embed id="pdf_day3" src="assets/pdfs/Newsletter- DAY 3.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
     </article>
 
     <!-- News Item 4-->
     <article class="news-card">
-      <embed id="pdf_test" src="assets/pdfs/Newsletter- DAY 4.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
+      <embed id="pdf_day4" src="assets/pdfs/Newsletter- DAY 4.pdf" type="application/pdf" onClick="showPdf()" width="100%" height="100%">
     </article>
 
     <div class="years-grid">

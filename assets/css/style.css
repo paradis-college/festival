@@ -681,3 +681,108 @@ a {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
 }
+
+/* Fix responsive design issues */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .vote-display-large {
+        font-size: 0.9rem;
+    }
+    
+    .project-card .card-body {
+        padding: 15px;
+    }
+    
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.375rem 0.75rem;
+    }
+}
+
+/* Enhanced Video Embedding Styles */
+.embedded-media-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.embedded-media-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(40, 167, 69, 0.15);
+    border-color: #28a745;
+}
+
+.embedded-media-container iframe {
+    border-radius: 10px;
+}
+
+.video-info {
+    padding: 12px 15px;
+    background: rgba(40, 167, 69, 0.05);
+    border-top: 1px solid rgba(40, 167, 69, 0.1);
+}
+
+.video-info a {
+    color: #1e7e34 !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.video-info a:hover {
+    color: #28a745 !important;
+    text-decoration: underline !important;
+}
+
+/* Error message styling for invalid video URLs */
+.alert-warning {
+    border-left: 4px solid #ffc107;
+    border-radius: 8px;
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.05));
+}
+
+.alert-warning code {
+    background: rgba(255, 193, 7, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+/* Improve form styling for video URL input */
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.form-text {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.form-text code {
+    background: rgba(40, 167, 69, 0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+/* PDF viewer improvements */
+#pdfModal .modal-dialog {
+    max-width: 90vw;
+}
+
+#pdfModal .modal-body {
+    height: 80vh;
+    padding: 0;
+}
+
+#pdfFrame {
+    border: none;
+    border-radius: 0;
+}

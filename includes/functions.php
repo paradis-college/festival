@@ -185,9 +185,28 @@ function extractYouTubeId($url) {
         return null;
     }
     
+    // Enhanced patterns to support more YouTube URL formats
     $patterns = [
-        '/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/',
-        '/youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]{11})/',
+        // Standard watch URLs
+        '/(?:youtube\.com|www\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/',
+        
+        // Short URLs
+        '/(?:youtu\.be)\/([a-zA-Z0-9_-]{11})/',
+        
+        // Embed URLs
+        '/(?:youtube\.com|www\.youtube\.com)\/embed\/([a-zA-Z0-9_-]{11})/',
+        
+        // YouTube Shorts
+        '/(?:youtube\.com|www\.youtube\.com)\/shorts\/([a-zA-Z0-9_-]{11})/',
+        
+        // Mobile URLs
+        '/(?:m\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/',
+        
+        // Gaming URLs  
+        '/(?:gaming\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/',
+        
+        // Live URLs
+        '/(?:youtube\.com|www\.youtube\.com)\/live\/([a-zA-Z0-9_-]{11})/',
     ];
     
     foreach ($patterns as $pattern) {
@@ -208,19 +227,64 @@ function renderEmbeddedMedia($media_url) {
     $youtubeId = extractYouTubeId($media_url);
     
     if ($youtubeId) {
-        // Render YouTube embed with responsive wrapper
-        return '<div class="ratio ratio-16x9 mb-4">
-            <iframe src="https://www.youtube.com/embed/' . htmlspecialchars($youtubeId) . '" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
+        // Enhanced YouTube embed with better accessibility and features
+        return '<div class="embedded-media-container mb-4">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/' . htmlspecialchars($youtubeId) . '?rel=0&showinfo=0&modestbranding=1" 
+                        title="Project demonstration video" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        loading="lazy"
+                        aria-label="Embedded YouTube video demonstrating the project">
+                </iframe>
+            </div>
+            <div class="video-info mt-2 text-muted small">
+                <i class="fab fa-youtube text-danger me-1"></i>
+                <a href="' . htmlspecialchars($media_url) . '" target="_blank" rel="noopener" class="text-decoration-none">
+                    Watch on YouTube <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+            </div>
         </div>';
     }
     
-    // If not a YouTube URL, return empty (could be extended for other video platforms)
+    // If not a valid YouTube URL, show helpful message
+    if (!empty($media_url)) {
+        return '<div class="alert alert-warning mb-4" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>Media URL provided:</strong> The provided URL does not appear to be a valid YouTube video. 
+            Please ensure you\'re using a YouTube link (youtube.com or youtu.be).
+            <div class="mt-2">
+                <small class="text-muted">
+                    Provided URL: <code>' . htmlspecialchars($media_url) . '</code>
+                </small>
+            </div>
+        </div>';
+    }
+    
     return '';
+}
+
+// Validate YouTube URL
+function validateYouTubeUrl($url) {
+    if (empty($url)) {
+        return ['valid' => true, 'message' => '']; // Empty is valid
+    }
+    
+    $youtubeId = extractYouTubeId($url);
+    if ($youtubeId) {
+        return ['valid' => true, 'message' => 'Valid YouTube URL', 'video_id' => $youtubeId];
+    }
+    
+    return ['valid' => false, 'message' => 'Please enter a valid YouTube URL (youtube.com or youtu.be)'];
+}
+
+// Generate YouTube thumbnail URL
+function getYouTubeThumbnail($video_id, $quality = 'hqdefault') {
+    if (empty($video_id)) {
+        return null;
+    }
+    return "https://img.youtube.com/vi/{$video_id}/{$quality}.jpg";
 }
 
 function getYears() {

@@ -23,6 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $year = intval($_POST['year']);
     $media_url = trim($_POST['media_url'] ?? '');
     
+    // Validate YouTube URL if provided
+    if (!empty($media_url)) {
+        $validation = validateYouTubeUrl($media_url);
+        if (!$validation['valid']) {
+            header("Location: edit.php?id={$id}&error=invalid_video_url");
+            exit();
+        }
+    }
+    
     if (updateProject($id, $title, $description, $content, $year, $media_url)) {
         header("Location: project.php?id=$id&success=update");
         exit();
@@ -45,6 +54,13 @@ include 'includes/header.php';
                 </h3>
             </div>
             <div class="card-body">
+                <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_video_url'): ?>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        The YouTube URL you provided is not valid. Please check the URL and try again.
+                    </div>
+                <?php endif; ?>
+                
                 <form method="POST">
                     <div class="mb-3">
                         <label for="title" class="form-label">Project Title</label>
@@ -63,10 +79,13 @@ include 'includes/header.php';
                         </label>
                         <input type="url" class="form-control" id="media_url" name="media_url" 
                                value="<?php echo htmlspecialchars($project['media_url'] ?? ''); ?>" 
-                               placeholder="https://www.youtube.com/watch?v=...">
+                               placeholder="https://www.youtube.com/watch?v=..." oninput="validateYouTubeURL(this)">
                         <div class="form-text">
-                            Paste a YouTube video URL to embed it in your project (e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+                            Paste a YouTube video URL to embed it in your project (e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ)<br>
+                            <small>Supports: <code>youtube.com</code>, <code>youtu.be</code>, <code>youtube.com/shorts</code></small>
                         </div>
+                        <div id="url-validation-feedback" class="mt-2"></div>
+                        <div id="video-preview" class="mt-3"></div>
                     </div>
                     
                     <div class="mb-3">
@@ -102,5 +121,85 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
+
+<script>
+function validateYouTubeURL(input) {
+    const url = input.value.trim();
+    const feedbackDiv = document.getElementById('url-validation-feedback');
+    const previewDiv = document.getElementById('video-preview');
+    
+    // Clear previous feedback and preview
+    feedbackDiv.innerHTML = '';
+    previewDiv.innerHTML = '';
+    
+    if (!url) {
+        input.classList.remove('is-valid', 'is-invalid');
+        return; // Empty is valid
+    }
+    
+    // Enhanced YouTube URL patterns
+    const patterns = [
+        /(?:youtube\.com|www\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/,
+        /(?:youtu\.be)\/([a-zA-Z0-9_-]{11})/,
+        /(?:youtube\.com|www\.youtube\.com)\/embed\/([a-zA-Z0-9_-]{11})/,
+        /(?:youtube\.com|www\.youtube\.com)\/shorts\/([a-zA-Z0-9_-]{11})/,
+        /(?:m\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/,
+        /(?:youtube\.com|www\.youtube\.com)\/live\/([a-zA-Z0-9_-]{11})/
+    ];
+    
+    let videoId = null;
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match) {
+            videoId = match[1];
+            break;
+        }
+    }
+    
+    if (videoId) {
+        // Valid YouTube URL
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+        feedbackDiv.innerHTML = '<div class="text-success small"><i class="fas fa-check-circle me-1"></i>Valid YouTube URL detected</div>';
+        
+        // Show preview thumbnail
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        previewDiv.innerHTML = `
+            <div class="card">
+                <div class="card-body p-3">
+                    <h6 class="card-title mb-2"><i class="fab fa-youtube text-danger me-1"></i>Video Preview</h6>
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <img src="${thumbnailUrl}" class="img-fluid rounded" alt="Video thumbnail" style="max-height: 90px;">
+                        </div>
+                        <div class="col-md-8">
+                            <small class="text-muted">Video ID: <code>${videoId}</code></small><br>
+                            <small class="text-success">✓ This video will be embedded in your project</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        // Invalid YouTube URL
+        input.classList.remove('is-valid');
+        input.classList.add('is-invalid');
+        feedbackDiv.innerHTML = `
+            <div class="text-danger small">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                Please enter a valid YouTube URL (youtube.com or youtu.be)
+            </div>
+        `;
+    }
+}
+
+// Validate existing URL on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const mediaUrlInput = document.getElementById('media_url');
+    if (mediaUrlInput && mediaUrlInput.value) {
+        validateYouTubeURL(mediaUrlInput);
+    }
+});
+</script>
 
 <?php include 'includes/footer.php'; ?>
