@@ -1,0 +1,42 @@
+/* Follow-up corrections from Copilot review. */
+.section-heading {
+    align-items: flex-end;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(3, 8, 28, 0.9);
+}
+
+.lightbox[aria-hidden="false"] {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: min(92vw, 1200px);
+    max-height: 82vh;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+@media (max-width: 760px) {
+    body > main.container.mt-4 {
+        width: min(calc(100% - 20px), 1180px);
+    }
+}

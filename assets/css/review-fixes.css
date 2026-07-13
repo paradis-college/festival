@@ -1,6 +1,0 @@
-/* Follow-up corrections from PR review. */
-@media (max-width: 760px) {
-    body > main.container.mt-4 {
-        width: min(calc(100% - 20px), 1180px);
-    }
-}
