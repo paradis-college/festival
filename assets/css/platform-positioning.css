@@ -11,22 +11,69 @@
 }
 
 .platform-intro {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 28px;
-    padding: 28px;
-    border: 1px solid #d9e1ea;
-    border-radius: 16px;
-    background: #f7f9fc;
+    padding: 30px;
+    border: 1px solid rgba(73, 123, 197, 0.32);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 8% 18%, rgba(76, 201, 240, 0.22), transparent 30%),
+        radial-gradient(circle at 92% 15%, rgba(139, 92, 246, 0.18), transparent 28%),
+        linear-gradient(135deg, #f8fbff 0%, #eef5ff 58%, #f9f6ff 100%);
+    box-shadow: 0 18px 44px rgba(28, 61, 119, 0.12);
+}
+
+.platform-intro::before,
+.platform-intro::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 999px;
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.platform-intro::before {
+    width: 160px;
+    height: 160px;
+    top: -92px;
+    right: 16%;
+    background: rgba(255, 255, 255, 0.74);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.65),
+        0 0 36px rgba(115, 171, 255, 0.38);
+}
+
+.platform-intro::after {
+    width: 7px;
+    height: 7px;
+    top: 24px;
+    right: 32px;
+    background: #fff;
+    box-shadow:
+        -42px 42px 0 1px rgba(255, 255, 255, 0.9),
+        -96px 4px 0 0 rgba(255, 255, 255, 0.85),
+        -132px 58px 0 1px rgba(255, 255, 255, 0.72),
+        8px 76px 0 0 rgba(255, 255, 255, 0.9);
+    animation: platform-sparkle 3.4s ease-in-out infinite;
 }
 
 .platform-intro h2 {
     margin: 4px 0 10px;
+    max-width: 700px;
 }
 
 .platform-intro p {
     margin: 0;
     color: #43526a;
+}
+
+.platform-intro .eyebrow {
+    color: #174ea6;
 }
 
 .platform-actions {
@@ -41,24 +88,29 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    padding: 0 18px;
-    border-radius: 10px;
+    min-height: 46px;
+    padding: 0 19px;
+    border-radius: 11px;
     border: 1px solid #0b2a68;
+    background: rgba(255, 255, 255, 0.74);
     color: #0b2a68;
-    font-weight: 700;
+    font-weight: 750;
     text-decoration: none;
+    box-shadow: 0 5px 15px rgba(20, 54, 112, 0.08);
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .platform-link.primary {
-    background: #0b2a68;
+    background: linear-gradient(135deg, #0b2a68, #1769aa);
     color: #fff;
+    border-color: transparent;
+    box-shadow: 0 10px 22px rgba(16, 77, 148, 0.22);
 }
 
 .platform-link:hover,
 .platform-link:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(11, 42, 104, 0.14);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(11, 42, 104, 0.18);
 }
 
 .achievement-card.primary {
@@ -137,6 +189,17 @@
     object-fit: cover;
     border-radius: 16px;
     margin: 20px 0;
+}
+
+@keyframes platform-sparkle {
+    0%, 100% { opacity: 0.42; transform: scale(0.92); }
+    50% { opacity: 1; transform: scale(1.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .platform-intro::after {
+        animation: none;
+    }
 }
 
 @media (max-width: 900px) {
