@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#07154f">
-    <title><?php echo isset($title) ? $title . ' - ' : ''; ?>Nikola Tesla Science Festival - Paradis College</title>
+    <title><?php echo isset($title) ? $title . ' - ' : ''; ?>Paradis Science Festival</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -21,8 +21,8 @@
 
     <nav id="navbar" aria-label="Primary navigation">
         <div class="navbar-shell">
-            <a class="navbar-brand-link" href="index.php" aria-label="Nikola Tesla Science Festival home">
-                <span class="brand-label">Nikola Tesla Science Festival</span>
+            <a class="navbar-brand-link" href="index.php" aria-label="Paradis Science Festival home">
+                <span class="brand-label">Paradis Science Festival</span>
             </a>
 
             <div class="navbar-links" aria-label="Festival pages">
@@ -53,7 +53,7 @@
         <div class="container site-header-inner">
             <div class="site-header-copy">
                 <p class="site-kicker">Paradis International College</p>
-                <h1 class="logo">Nikola Tesla <span>Science Festival</span></h1>
+                <h1 class="logo">Paradis <span>Science Festival</span></h1>
                 <p class="tagline">A project platform, public showcase and archive for student-led science.</p>
             </div>
             <img
