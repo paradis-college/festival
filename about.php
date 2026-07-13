@@ -4,79 +4,68 @@ $title = 'About Us';
 include 'includes/header.php';
 ?>
 
-<section class="about">
-  <div class="about-text">
-    <h2>About Us</h2>
-    <p>
-      We are passionate about turning curiosity into creativity.  
-      Our mission is to make STEM education inspiring and accessible to everyone — 
-      helping young minds explore, experiment, and build a smarter future.
-    </p>
-    <div class="about-cards">
-      <div class="about-card">
-        <h3>Our Mission</h3>
-        <p>To empower learners through hands-on STEM experiences that spark curiosity and confidence.</p>
-      </div>
-      <div class="about-card">
-        <h3>Our Vision</h3>
-        <p>A world where innovation and critical thinking are part of everyday learning.</p>
-      </div>
-    </div>
-    <a href="projects.php" class="about-btn">See Our Students' Work →</a>
-    <section id="presentations">
-      <h2>Student Projects</h2>
+<link href="assets/css/secondary-pages.css" rel="stylesheet">
+
+<div class="secondary-page">
+    <section class="secondary-hero" aria-labelledby="about-title">
+        <div class="secondary-hero-copy">
+            <p class="eyebrow">About the festival</p>
+            <h1 id="about-title">Where student curiosity becomes visible work</h1>
+            <p class="lead">Paradis Science Festival is a public showcase, project platform and archive for student-led science, engineering and interdisciplinary learning.</p>
+        </div>
+        <div class="secondary-hero-media">
+            <img src="assets/images/experiments kids.jpg" alt="Students conducting science experiments">
+        </div>
     </section>
-  </div>
-</section>
 
-<div class="container">
-  <img src="assets/images/experiments kids.jpg" alt="Children conducting science experiments" style="width:100%;">
-  <div class="content">
-    <h1>Science Fair</h1>
-    <p>Inspired by the genius of Nikola Tesla, our Science Fair Festival celebrates the power of imagination, innovation, and discovery. It is where ideas spark into reality, where students transform curiosity into invention, and where the next generation of creators dares to shape the future — just as Tesla did.</p>
-  </div>
+    <section aria-labelledby="purpose-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Purpose</p>
+                <h2 id="purpose-title">More than a one-day exhibition</h2>
+            </div>
+            <p>The festival gives students a place to investigate, build, present and revisit their work over time.</p>
+        </div>
+        <div class="secondary-grid">
+            <article class="secondary-card">
+                <h3>Learn through making</h3>
+                <p>Students test ideas through experiments, prototypes, observation, research and iteration.</p>
+            </article>
+            <article class="secondary-card">
+                <h3>Present with confidence</h3>
+                <p>Projects are explained to peers, teachers, families and external guests in a public setting.</p>
+            </article>
+            <article class="secondary-card">
+                <h3>Connect disciplines</h3>
+                <p>Science, engineering, design, ecology, chemistry and digital tools meet in practical work.</p>
+            </article>
+            <article class="secondary-card">
+                <h3>Build an archive</h3>
+                <p>Projects, publications, media and results remain available beyond the event itself.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="secondary-grid" aria-label="Mission and vision">
+        <article class="secondary-card">
+            <p class="eyebrow">Mission</p>
+            <h2>Make STEM active and accessible</h2>
+            <p>We create structured opportunities for students to ask better questions, develop practical skills and communicate what they discover.</p>
+        </article>
+        <article class="secondary-card">
+            <p class="eyebrow">Vision</p>
+            <h2>A school culture where ideas are built</h2>
+            <p>We want experimentation, collaboration and responsible innovation to become normal parts of everyday learning.</p>
+        </article>
+    </section>
+
+    <section class="secondary-cta" aria-labelledby="about-cta-title">
+        <div>
+            <h2 id="about-cta-title">See what students have created</h2>
+            <p>Browse current projects, project films and bilingual publications.</p>
+        </div>
+        <a href="projects.php" class="platform-link primary">Browse projects</a>
+    </section>
 </div>
-
-<section id="about" class="about section">
-  <div class="about-wrap">
-    <!-- Tesla Quote -->
-    <blockquote class="about-quote">
-      "The present is theirs; the future, for which I really worked, is mine."
-      <span>— Nikola Tesla</span>
-    </blockquote>
-
-    <div class="about-grid">
-      <div class="about-feature">
-        <div class="about-icon">💡</div>
-        <h3>Hands-On Learning</h3>
-        <p>Students build real prototypes, run experiments, and learn by doing — not just reading.</p>
-      </div>
-
-      <div class="about-feature">
-        <div class="about-icon">🤝</div>
-        <h3>Collaboration</h3>
-        <p>We foster teamwork, mentorship, and peer-to-peer learning in every project.</p>
-      </div>
-
-      <div class="about-feature">
-        <div class="about-icon">🌍</div>
-        <h3>Real-World Impact</h3>
-        <p>From sustainability to technology, our projects address challenges that matter.</p>
-      </div>
-
-      <div class="about-feature">
-        <div class="about-icon">🚀</div>
-        <h3>Future-Ready Skills</h3>
-        <p>Critical thinking, coding, design — students gain skills for tomorrow's careers.</p>
-      </div>
-    </div>
-
-    <div class="about-cta">
-      <h3>Join the Movement</h3>
-      <p>Whether you're a student, teacher, or supporter — there's a place for you in our STEM community.</p>
-      <a href="community.php" class="btn btn-primary">Get Involved →</a>
-    </div>
-  </div>
-</section>
 
 <?php include 'includes/footer.php'; ?>
