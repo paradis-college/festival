@@ -1,62 +1,127 @@
 /**
  * Science Festival - Unified JavaScript
- * Merged from script.js + frontend.js for better performance
  */
 
-// ===== SLIDESHOW FUNCTIONALITY =====
+// ===== ROBUST SLIDESHOW =====
 let slideIndex = 1;
-let slideTimeout;
+let slideTimeout = null;
+const SLIDE_DELAY = 5000;
 
-function plusSlides(n) {
-    clearTimeout(slideTimeout);
-    showSlides(slideIndex += n);
+function getSlides() {
+    return Array.from(document.querySelectorAll('.mySlides'));
 }
 
-function currentSlide(n) {
-    clearTimeout(slideTimeout);
-    showSlides(slideIndex = n);
+function getDots() {
+    return Array.from(document.querySelectorAll('.dot'));
+}
+
+function clearSlideTimer() {
+    if (slideTimeout !== null) {
+        window.clearTimeout(slideTimeout);
+        slideTimeout = null;
+    }
+}
+
+function scheduleNextSlide() {
+    clearSlideTimer();
+    if (!document.hidden && getSlides().length > 1) {
+        slideTimeout = window.setTimeout(() => showSlides(slideIndex + 1), SLIDE_DELAY);
+    }
+}
+
+function renderSlide() {
+    const slides = getSlides();
+    const dots = getDots();
+
+    if (!slides.length) return;
+
+    if (slideIndex > slides.length) slideIndex = 1;
+    if (slideIndex < 1) slideIndex = slides.length;
+
+    slides.forEach((slide, index) => {
+        const active = index === slideIndex - 1;
+        slide.hidden = !active;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+
+    dots.forEach((dot, index) => {
+        const active = index === slideIndex - 1;
+        dot.classList.toggle('active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+
+    scheduleNextSlide();
 }
 
 function showSlides(n) {
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    
-    if (slides.length === 0) return; // Guard against no slides
-    
-    if (n === undefined) {
-        slideIndex++;
-    } else {
-        slideIndex = n;
-    }
-    
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
-    if (slideIndex < 1) {
-        slideIndex = slides.length;
-    }
-    
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    
-    slides[slideIndex-1].style.display = "block";
-    if (dots.length > 0) {
-        dots[slideIndex-1].className += " active";
-    }
-    
-    // Auto advance to next slide after 5 seconds
-    slideTimeout = setTimeout(showSlides, 5000);
+    if (Number.isFinite(n)) slideIndex = n;
+    renderSlide();
 }
 
-// ===== PDF VIEWER FUNCTIONALITY =====
+function plusSlides(n) {
+    clearSlideTimer();
+    showSlides(slideIndex + n);
+}
+
+function currentSlide(n) {
+    clearSlideTimer();
+    showSlides(n);
+}
+
+function setupSlideshow() {
+    const container = document.querySelector('.slideshow-container');
+    const slides = getSlides();
+
+    if (!container || !slides.length) return;
+
+    slides.forEach((slide) => {
+        const image = slide.querySelector('img');
+        if (!image) return;
+
+        image.loading = 'eager';
+        image.decoding = 'async';
+
+        image.addEventListener('error', () => {
+            slide.classList.add('slide-load-error');
+            const fallback = document.createElement('div');
+            fallback.className = 'slide-fallback';
+            fallback.textContent = 'Festival image unavailable';
+            image.replaceWith(fallback);
+        }, { once: true });
+    });
+
+    container.addEventListener('mouseenter', clearSlideTimer);
+    container.addEventListener('mouseleave', scheduleNextSlide);
+    container.addEventListener('focusin', clearSlideTimer);
+    container.addEventListener('focusout', scheduleNextSlide);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) clearSlideTimer();
+        else scheduleNextSlide();
+    });
+
+    renderSlide();
+}
+
+// ===== LOCAL VIDEO =====
+function setupFestivalVideo() {
+    const video = document.querySelector('[data-festival-video]');
+    if (!video) return;
+
+    video.addEventListener('error', () => {
+        const wrapper = video.closest('.festival-video-frame');
+        if (wrapper) wrapper.classList.add('video-load-error');
+    });
+
+    video.addEventListener('play', clearSlideTimer);
+    video.addEventListener('pause', scheduleNextSlide);
+    video.addEventListener('ended', scheduleNextSlide);
+}
+
+// ===== PDF VIEWER =====
 function showPdf() {
-    // Fixed to work with unique PDF IDs and show all PDF elements
-    const pdfElements = document.querySelectorAll('embed[id^="pdf_"]');
-    pdfElements.forEach(element => {
+    document.querySelectorAll('embed[id^="pdf_"]').forEach((element) => {
         element.style.display = 'block';
     });
 }
@@ -66,181 +131,135 @@ function setupImageGallery() {
     const images = document.querySelectorAll('.column img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const closeBtn = document.querySelector('.lightbox-close');
+    const lightboxCaption = document.getElementById('caption');
+    const closeBtn = lightbox ? lightbox.querySelector('.close, .lightbox-close') : null;
 
-    if (!lightbox) return; // Guard if lightbox doesn't exist
+    if (!lightbox || !lightboxImg) return;
 
-    images.forEach(img => {
-        img.addEventListener('click', function() {
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.removeAttribute('src');
+        document.body.style.overflow = '';
+    }
+
+    images.forEach((img) => {
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.addEventListener('click', () => {
             lightbox.style.display = 'flex';
-            lightboxImg.src = this.src;
-            lightboxCaption.textContent = this.alt || 'Image';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            lightbox.setAttribute('aria-hidden', 'false');
+            lightboxImg.src = img.currentSrc || img.src;
+            lightboxImg.alt = img.alt || 'Festival photograph';
+            if (lightboxCaption) lightboxCaption.textContent = img.alt || '';
+            document.body.style.overflow = 'hidden';
+        });
+        img.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                img.click();
+            }
         });
     });
 
-    // Close lightbox
-    function closeLightbox() {
-        lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeLightbox);
-    }
-
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
     });
-
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-            closeLightbox();
-        }
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
     });
 }
 
-// ===== PDF MODAL FUNCTIONALITY =====
+// ===== PDF MODAL =====
 function setupPdfModal() {
     const modal = document.getElementById('pdfModal');
     const frame = document.getElementById('pdfFrame');
-    const pdfLinks = document.querySelectorAll('.pdf-link');
-
     if (!modal || !frame) return;
 
-    pdfLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const pdfUrl = this.getAttribute('data-pdf');
-            frame.src = pdfUrl;
-            const bootstrapModal = new bootstrap.Modal(modal);
-            bootstrapModal.show();
+    document.querySelectorAll('.pdf-link').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            frame.src = link.getAttribute('data-pdf');
+            if (window.bootstrap?.Modal) new bootstrap.Modal(modal).show();
         });
     });
 
-    // Clear iframe when modal is closed to stop loading
-    modal.addEventListener('hidden.bs.modal', function() {
+    modal.addEventListener('hidden.bs.modal', () => {
         frame.src = 'about:blank';
     });
 }
 
-// ===== VOTE BUTTON ENHANCEMENT =====
+// ===== FORM AND UI ENHANCEMENTS =====
 function setupVoteButtons() {
-    const voteButtons = document.querySelectorAll('.vote-btn');
-    voteButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            // Create ripple effect
+    document.querySelectorAll('.vote-btn').forEach((button) => {
+        button.addEventListener('click', (event) => {
             const ripple = document.createElement('span');
             const rect = button.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.5);
-                border-radius: 50%;
-                pointer-events: none;
-                animation: ripple 0.6s ease-out;
-            `;
-            
-            button.style.position = 'relative';
-            button.style.overflow = 'hidden';
+            ripple.className = 'button-ripple';
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
             button.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
+            window.setTimeout(() => ripple.remove(), 600);
         });
     });
 }
 
-// ===== FORM VALIDATION ENHANCEMENT =====
 function setupFormValidation() {
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    field.classList.remove('is-invalid');
-                }
+    document.querySelectorAll('form').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            let valid = true;
+            form.querySelectorAll('[required]').forEach((field) => {
+                const empty = !String(field.value ?? '').trim();
+                field.classList.toggle('is-invalid', empty);
+                if (empty) valid = false;
             });
-            
-            if (!isValid) {
-                e.preventDefault();
-                const firstInvalid = form.querySelector('.is-invalid');
-                if (firstInvalid) {
-                    firstInvalid.focus();
-                }
+            if (!valid) {
+                event.preventDefault();
+                form.querySelector('.is-invalid')?.focus();
             }
         });
     });
 }
 
-// ===== ALERT AUTO-HIDE =====
 function setupAlertAutoHide() {
-    const alerts = document.querySelectorAll('.alert');
-    alerts.forEach(alert => {
-        // Only auto-hide success/info alerts, not warnings/errors
-        if (alert.classList.contains('alert-success') || alert.classList.contains('alert-info')) {
-            setTimeout(() => {
-                alert.classList.add('fade');
-                setTimeout(() => {
-                    alert.remove();
-                }, 150);
-            }, 5000);
-        }
+    document.querySelectorAll('.alert-success, .alert-info').forEach((alert) => {
+        window.setTimeout(() => alert.remove(), 5000);
     });
 }
 
-// ===== SMOOTH SCROLLING =====
 function setupSmoothScrolling() {
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const selector = link.getAttribute('href');
+            if (!selector || selector === '#') return;
+            const target = document.querySelector(selector);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                event.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 }
 
-// ===== YOUTUBE URL VALIDATION (for upload/edit forms) =====
+// ===== YOUTUBE URL VALIDATION =====
 function validateYouTubeURL(input) {
     const url = input.value.trim();
     const feedbackDiv = document.getElementById('url-validation-feedback');
     const previewDiv = document.getElementById('video-preview');
-    
-    if (!feedbackDiv) return; // Guard if elements don't exist
-    
-    // Clear previous feedback and preview
+    if (!feedbackDiv) return;
+
     feedbackDiv.innerHTML = '';
     if (previewDiv) previewDiv.innerHTML = '';
-    
+
     if (!url) {
         input.classList.remove('is-valid', 'is-invalid');
-        return; // Empty is valid
+        return;
     }
-    
-    // Enhanced YouTube URL patterns
+
     const patterns = [
         /(?:youtube\.com|www\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/,
         /(?:youtu\.be)\/([a-zA-Z0-9_-]{11})/,
@@ -249,94 +268,37 @@ function validateYouTubeURL(input) {
         /(?:m\.youtube\.com)\/watch\?.*?v=([a-zA-Z0-9_-]{11})/,
         /(?:youtube\.com|www\.youtube\.com)\/live\/([a-zA-Z0-9_-]{11})/
     ];
-    
-    let videoId = null;
-    for (const pattern of patterns) {
-        const match = url.match(pattern);
-        if (match) {
-            videoId = match[1];
-            break;
-        }
-    }
-    
+
+    const match = patterns.map((pattern) => url.match(pattern)).find(Boolean);
+    const videoId = match?.[1] || null;
+
+    input.classList.toggle('is-valid', Boolean(videoId));
+    input.classList.toggle('is-invalid', !videoId);
+
     if (videoId) {
-        // Valid YouTube URL
-        input.classList.remove('is-invalid');
-        input.classList.add('is-valid');
         feedbackDiv.innerHTML = '<div class="text-success small"><i class="fas fa-check-circle me-1"></i>Valid YouTube URL detected</div>';
-        
-        // Show preview thumbnail if preview div exists
         if (previewDiv) {
-            const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-            previewDiv.innerHTML = `
-                <div class="card">
-                    <div class="card-body p-3">
-                        <h6 class="card-title mb-2"><i class="fab fa-youtube text-danger me-1"></i>Video Preview</h6>
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
-                                <img src="${thumbnailUrl}" class="img-fluid rounded" alt="Video thumbnail" style="max-height: 90px;">
-                            </div>
-                            <div class="col-md-8">
-                                <small class="text-muted">Video ID: <code>${videoId}</code></small><br>
-                                <small class="text-success">✓ This video will be embedded in your project</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+            previewDiv.innerHTML = `<div class="card"><div class="card-body p-3"><h6 class="card-title mb-2"><i class="fab fa-youtube text-danger me-1"></i>Video Preview</h6><img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" class="img-fluid rounded" alt="Video thumbnail" style="max-height:90px"><div><small class="text-muted">Video ID: <code>${videoId}</code></small></div></div></div>`;
         }
     } else {
-        // Invalid YouTube URL
-        input.classList.remove('is-valid');
-        input.classList.add('is-invalid');
-        feedbackDiv.innerHTML = `
-            <div class="text-danger small">
-                <i class="fas fa-exclamation-triangle me-1"></i>
-                Please enter a valid YouTube URL (youtube.com or youtu.be)
-            </div>
-        `;
+        feedbackDiv.innerHTML = '<div class="text-danger small"><i class="fas fa-exclamation-triangle me-1"></i>Please enter a valid YouTube URL.</div>';
     }
 }
 
-// ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
+document.addEventListener('DOMContentLoaded', () => {
+    setupSlideshow();
+    setupFestivalVideo();
     setupImageGallery();
     setupPdfModal();
     setupVoteButtons();
     setupFormValidation();
     setupAlertAutoHide();
     setupSmoothScrolling();
-    
-    // Start slideshow if slides exist
-    if (document.querySelector('.mySlides')) {
-        showSlides(slideIndex);
-    }
-    
-    // Validate existing YouTube URL on edit pages
+
     const mediaUrlInput = document.getElementById('media_url');
-    if (mediaUrlInput && mediaUrlInput.value) {
-        validateYouTubeURL(mediaUrlInput);
-    }
+    if (mediaUrlInput?.value) validateYouTubeURL(mediaUrlInput);
 });
 
-// ===== ADD RIPPLE ANIMATION CSS =====
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes ripple {
-        0% {
-            transform: scale(0);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(2);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Make functions available globally for HTML onclick handlers
 window.showPdf = showPdf;
 window.plusSlides = plusSlides;
 window.currentSlide = currentSlide;
