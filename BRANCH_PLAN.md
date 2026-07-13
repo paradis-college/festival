@@ -1,37 +1,36 @@
 # Media and Carousel Stabilization
 
-Branch: `fix/media-and-carousel`
+## Implemented
 
-## Scope
+- Reworked slideshow state management so one valid slide always remains visible.
+- Added image-load fallbacks instead of leaving an empty or black frame.
+- Paused autoplay while the browser tab is hidden, while the carousel is hovered or focused, and while the festival video is playing.
+- Added accessible carousel controls, slide state attributes and descriptive image text.
+- Corrected the gallery lightbox selectors and keyboard behavior.
+- Added a conditional local-video section titled **Our Festival in a Few Minutes**.
+- Added responsive styling for local video, fallback states and reduced-motion preferences.
+- Retained YouTube URL validation for uploaded student projects.
 
-- Stabilize the homepage carousel and prevent blank/black states.
-- Add graceful handling for missing or failed images.
-- Pause automatic rotation while the page is hidden and resume cleanly.
-- Add a homepage festival-video component that supports a local MP4/WebM source with a fallback link.
-- Preserve the existing YouTube project-embed workflow.
-- Test keyboard controls, reduced-motion behavior, mobile sizing, and 60-second autoplay.
+## Expected media paths
 
-## Video asset
+```text
+assets/videos/festival-2025.mp4
+assets/images/festival-video-poster.jpg
+```
 
-The source file is currently stored in Google Drive as:
+The homepage checks whether these files exist. Until the MP4 is uploaded, it shows a temporary source-folder link rather than a broken video player.
 
-`Festivalul Științelor Nikola Tesla 2025 video final.mov`
+## Local video requirements
 
-Target web outputs:
+- Container: MP4
+- Video: H.264
+- Audio: AAC
+- Pixel format: yuv420p
+- Web optimization: `-movflags +faststart`
 
-- `festival-2025-1080p.mp4` — H.264/AAC, fast-start
-- optional `festival-2025-720p.mp4` — smaller mobile fallback
-- poster image extracted from the video
+## Still to verify
 
-The video itself should not be committed until it is compressed and checked against the hosting/repository size limits.
-
-## Facebook references queued for the content branch
-
-- https://www.facebook.com/story.php?story_fbid=1502086351717378&id=100057480818600
-- https://www.facebook.com/scoala.paradis/videos/4451248218496583/
-- https://www.facebook.com/story.php?story_fbid=1485784686680878&id=100057480818600
-- https://www.facebook.com/story.php?story_fbid=1485668166692530&id=100057480818600
-- https://www.facebook.com/share/p/1AfoN43jca/
-- https://www.facebook.com/share/v/1EPzt1poYo/
-- https://www.facebook.com/share/p/18bm2z8ooj/
-- https://www.facebook.com/share/p/188QFMBdAk/
+- Test the compressed MP4 after upload.
+- Confirm playback in Chrome, Edge, Firefox, Safari and a mobile browser.
+- Run the carousel for at least two full cycles with the final production images.
+- Rebase or merge the latest `main` before final review if `main` changes during implementation.
