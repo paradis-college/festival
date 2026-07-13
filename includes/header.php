@@ -11,7 +11,9 @@
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/refinement.css" rel="stylesheet">
     <link href="assets/css/content.css" rel="stylesheet">
+    <link href="assets/css/content-review-fixes.css" rel="stylesheet">
     <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/content-review-fixes.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
