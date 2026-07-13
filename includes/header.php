@@ -14,6 +14,9 @@
     <link href="assets/css/content-review-fixes.css" rel="stylesheet">
     <link href="assets/css/platform-positioning.css" rel="stylesheet">
     <link href="assets/css/listing-pages.css" rel="stylesheet">
+    <?php foreach (($extraStylesheets ?? []) as $stylesheet): ?>
+        <link href="<?php echo htmlspecialchars($stylesheet); ?>" rel="stylesheet">
+    <?php endforeach; ?>
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/content-review-fixes.js" defer></script>
 </head>
