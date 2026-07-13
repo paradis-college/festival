@@ -1,0 +1,301 @@
+/* Frontend refinement layer: intentionally isolated from main.css. */
+:root {
+    --festival-navy: #07154f;
+    --festival-blue: #1276a8;
+    --festival-cyan: #44c4dc;
+    --festival-green: #24945f;
+    --festival-ink: #172033;
+    --festival-muted: #657083;
+    --festival-surface: #ffffff;
+    --festival-soft: #f4f8fb;
+    --festival-border: rgba(7, 21, 79, 0.12);
+    --festival-shadow: 0 18px 50px rgba(15, 31, 66, 0.11);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(180deg, #eef6fb 0, #ffffff 420px);
+    color: var(--festival-ink);
+    line-height: 1.65;
+}
+
+body > .container.mt-4 {
+    width: min(1180px, calc(100% - 32px));
+    max-width: 1180px;
+    padding: 0;
+    margin-top: 2rem !important;
+}
+
+#navbar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 60px;
+    padding: 0.45rem max(1rem, calc((100vw - 1180px) / 2));
+    background: rgba(7, 21, 79, 0.96);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(14px);
+    overflow-x: auto;
+}
+
+#navbar a {
+    float: none !important;
+    flex: 0 0 auto;
+    padding: 0.7rem 0.85rem;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.94rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+#navbar a:hover,
+#navbar a:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+#navbar a[href*="login"],
+#navbar a[href*="register"],
+#navbar a[href*="logout"],
+#navbar a[href*="upload"] {
+    margin-left: auto;
+}
+
+#navbar a[href*="register"] + a,
+#navbar a[href*="upload"] + a {
+    margin-left: 0;
+}
+
+.site-header {
+    position: relative;
+    overflow: hidden;
+    margin-top: 60px;
+    padding: clamp(2.8rem, 7vw, 5.8rem) 1.25rem;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(68, 196, 220, 0.3), transparent 28%),
+        radial-gradient(circle at 86% 75%, rgba(36, 148, 95, 0.25), transparent 32%),
+        linear-gradient(135deg, #07154f 0%, #0b3671 58%, #117d9e 100%);
+}
+
+.site-header::after {
+    content: "";
+    position: absolute;
+    inset: auto -8% -75% 35%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.035), 0 0 0 140px rgba(255, 255, 255, 0.025);
+    pointer-events: none;
+}
+
+.site-header .container {
+    position: relative;
+    z-index: 1;
+}
+
+.site-header .logo {
+    max-width: 940px;
+    margin: 0 auto 0.8rem;
+    font-size: clamp(2rem, 5vw, 4.25rem);
+    line-height: 1.06;
+    letter-spacing: -0.045em;
+}
+
+.site-header .logo span {
+    color: #8eeafa;
+}
+
+.site-header .tagline {
+    max-width: 650px;
+    margin: 0 auto 1.5rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.site-header img {
+    width: clamp(76px, 10vw, 118px) !important;
+    height: auto;
+    padding: 0.55rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
+}
+
+.hero,
+.hero-section,
+.card,
+.pres-card,
+.project-card,
+.news-card,
+.community-card {
+    border: 1px solid var(--festival-border);
+    border-radius: 20px;
+    box-shadow: var(--festival-shadow);
+}
+
+.hero {
+    overflow: hidden;
+    padding: clamp(2rem, 5vw, 4rem);
+    background: linear-gradient(135deg, rgba(7, 21, 79, 0.98), rgba(18, 118, 168, 0.94));
+    color: #fff;
+}
+
+.hero h1,
+.hero h2 {
+    color: #fff;
+    letter-spacing: -0.035em;
+}
+
+.hero p {
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.08rem;
+}
+
+.hero-btn,
+.btn-primary,
+.btn-success {
+    border: 0;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(7, 21, 79, 0.18);
+    font-weight: 700;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.75rem 1.2rem;
+    background: #fff;
+    color: var(--festival-navy);
+    text-decoration: none;
+}
+
+.hero-btn.secondary {
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.card,
+.pres-card,
+.project-card,
+.news-card,
+.community-card {
+    overflow: hidden;
+    background: var(--festival-surface);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card:hover,
+.pres-card:hover,
+.project-card:hover,
+.news-card:hover,
+.community-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 58px rgba(15, 31, 66, 0.15);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--festival-navy);
+    letter-spacing: -0.025em;
+}
+
+img {
+    max-width: 100%;
+}
+
+.column img {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(15, 31, 66, 0.1);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.column img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 34px rgba(15, 31, 66, 0.16);
+}
+
+input,
+select,
+textarea,
+.form-control,
+.form-select {
+    border-radius: 12px !important;
+    border-color: rgba(7, 21, 79, 0.18) !important;
+}
+
+footer {
+    margin-top: 4rem;
+}
+
+:focus-visible {
+    outline: 3px solid rgba(68, 196, 220, 0.8);
+    outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+    body > .container.mt-4 {
+        width: min(100% - 20px, 1180px);
+    }
+
+    #navbar {
+        justify-content: flex-start;
+        padding-inline: 0.6rem;
+    }
+
+    #navbar a {
+        padding: 0.65rem 0.72rem;
+        font-size: 0.86rem;
+    }
+
+    #navbar a[href*="login"],
+    #navbar a[href*="register"],
+    #navbar a[href*="logout"],
+    #navbar a[href*="upload"] {
+        margin-left: 0;
+    }
+
+    .site-header {
+        padding-block: 2.8rem;
+    }
+
+    .column {
+        width: 50%;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .column {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
