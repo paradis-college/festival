@@ -1,0 +1,209 @@
+/* Focused layouts for About and Community pages. */
+.secondary-page {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    padding-bottom: clamp(2rem, 6vw, 5rem);
+}
+
+.secondary-hero {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border: 1px solid var(--festival-border);
+    border-radius: 24px;
+    background: linear-gradient(135deg, #f8fbff 0%, #eef5ff 65%, #f7f4ff 100%);
+    box-shadow: var(--festival-shadow);
+}
+
+.secondary-hero::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    right: -80px;
+    top: -100px;
+    border-radius: 50%;
+    background: rgba(65, 168, 255, .13);
+    pointer-events: none;
+}
+
+.secondary-hero-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.secondary-hero h1 {
+    margin: 0 0 .8rem;
+    max-width: 760px;
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -.04em;
+}
+
+.secondary-hero .lead {
+    max-width: 700px;
+    margin: 0;
+    color: var(--festival-muted);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.secondary-hero-media {
+    position: relative;
+    z-index: 1;
+}
+
+.secondary-hero-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 20px 46px rgba(9, 31, 73, .16);
+}
+
+.secondary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+.secondary-card {
+    padding: clamp(1.3rem, 3vw, 2rem);
+    border: 1px solid var(--festival-border);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(15, 35, 75, .08);
+}
+
+.secondary-card h2,
+.secondary-card h3 {
+    margin-top: 0;
+}
+
+.secondary-card p:last-child {
+    margin-bottom: 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.value-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 1.35rem;
+    border: 1px solid var(--festival-border);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 10px 26px rgba(15, 35, 75, .07);
+}
+
+.value-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    background: #eaf4ff;
+    color: #0b5ea8;
+    font-size: 1.2rem;
+}
+
+.value-card h3 {
+    margin: 0 0 .55rem;
+    font-size: 1.15rem;
+}
+
+.value-card p {
+    color: var(--festival-muted);
+}
+
+.value-card details {
+    margin-top: auto;
+    padding-top: .6rem;
+}
+
+.value-card summary {
+    width: fit-content;
+    cursor: pointer;
+    color: #0b5ea8;
+    font-weight: 750;
+}
+
+.value-card summary:hover {
+    text-decoration: underline;
+    text-underline-offset: .2em;
+}
+
+.value-card summary:focus-visible {
+    outline: 3px solid rgba(23, 105, 170, .35);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.value-card details[open] summary {
+    margin-bottom: .55rem;
+}
+
+.value-card details p:last-child {
+    margin-bottom: 0;
+}
+
+.secondary-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: clamp(1.4rem, 4vw, 2.5rem);
+    border-radius: 20px;
+    background: #0d315f;
+    color: #fff;
+}
+
+.secondary-cta h2,
+.secondary-cta p {
+    color: inherit;
+}
+
+.secondary-cta p {
+    margin-bottom: 0;
+    opacity: .88;
+}
+
+@media (max-width: 900px) {
+    .secondary-hero,
+    .secondary-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .secondary-hero {
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .secondary-hero h1 {
+        font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .secondary-cta,
+    .secondary-cta .platform-actions {
+        align-items: stretch;
+    }
+
+    .secondary-cta .platform-actions,
+    .secondary-cta .platform-link {
+        width: 100%;
+    }
+}

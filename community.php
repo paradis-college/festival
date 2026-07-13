@@ -1,141 +1,47 @@
 <?php
 require_once 'includes/functions.php';
 $title = 'Community';
+$extraStylesheets = ['assets/css/secondary-pages.css'];
 include 'includes/header.php';
 ?>
 
-<div class="bg-image img1"></div>
-<div class="bg-image img2"></div>
-<div class="bg-image img3"></div>
-<div class="bg-image img4"></div>
-<div class="bg-image img5"></div>
-<div class="bg-image img6"></div>
-
-<main class="wrap" aria-labelledby="values-title">
-    <span class="kicker">Our Philosophy</span>
-    <h1 id="values-title">Our STEM Values</h1>
-    <p class="lead">
-      STEM is more than science and technology — it's a mindset. These values guide how we learn, build, and make a real-world impact.
-    </p>
-
-    <section class="grid" aria-label="Interactive list of STEM values">
-      <!-- Card 1: Curiosity -->
-      <article class="card">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.71.71l.27.28v.79L20 21.5 21.5 20l-6-6zm-6 0A4.5 4.5 0 1114 9.5 4.5 4.5 0 019.5 14z"/></svg>
+<div class="secondary-page">
+    <section class="secondary-hero" aria-labelledby="community-title">
+        <div class="secondary-hero-copy">
+            <p class="eyebrow">Festival community</p>
+            <h1 id="community-title">A shared culture of curiosity, care and collaboration</h1>
+            <p class="lead">The festival brings together students, teachers, mentors and families around practical learning and responsible innovation.</p>
         </div>
-        <h3 class="title">Curiosity sparks discovery</h3>
-        <p class="desc">We ask bold questions and explore the "what if?" moments that lead to meaningful breakthroughs.</p>
-        <div class="more" id="more-curiosity" hidden>
-          Curiosity is the starting point of every project we do. We encourage learners to
-          observe closely, form testable questions, and explore multiple paths to an answer.
-          From small experiments to ambitious builds, curiosity keeps momentum high and turns
-          unexpected results into opportunities to learn more.
+        <div class="secondary-hero-media">
+            <img src="assets/images/PHOTO-2025-10-08-18-51-46.jpg" alt="Students and teachers taking part in a festival activity">
         </div>
-        <button class="cta" aria-controls="more-curiosity" aria-expanded="false">Learn more →</button>
-      </article>
-
-      <!-- Card 2: Creativity -->
-      <article class="card">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M9 21h6m-3-2v2m7-10a7 7 0 10-14 0c0 2.5 1.2 4.1 3 5.5.6.5 1 1.2 1 2h6c0-.8.4-1.5 1-2 1.8-1.4 3-3 3-5.5z"/></svg>
-        </div>
-        <h3 class="title">Creativity drives innovation</h3>
-        <p class="desc">We turn imagination into action — designing fresh solutions to tough problems.</p>
-        <div class="more" id="more-creativity" hidden>
-          Creativity in STEM means prototyping fast, learning from feedback, and iterating with purpose.
-          We combine design thinking with technical skills so learners move from ideas to working models.
-          Mistakes are welcomed as signals that help us refine concepts and discover better approaches.
-        </div>
-        <button class="cta" aria-controls="more-creativity" aria-expanded="false">Learn more →</button>
-      </article>
-
-      <!-- Card 3: Collaboration -->
-      <article class="card">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 4 0 008 0zm-10 9a6 6 0 0112 0H6z"/></svg>
-        </div>
-        <h3 class="title">Collaboration makes us stronger</h3>
-        <p class="desc">Great ideas grow when diverse minds work together toward a shared goal.</p>
-        <div class="more" id="more-collaboration" hidden>
-          Teams practice respectful debate, active listening, and clear role-sharing. We use lightweight
-          rituals—stand-ups, retros, and demos—to keep everyone aligned. Collaboration helps us scale ideas
-          faster and ensures that every voice contributes to the final solution.
-        </div>
-        <button class="cta" aria-controls="more-collaboration" aria-expanded="false">Learn more →</button>
-      </article>
-
-      <!-- Card 4: Inclusivity -->
-      <article class="card">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 11.001-10.001A5 5 0 0112 12zm-7 9a7 7 0 0114 0H5z"/></svg>
-        </div>
-        <h3 class="title">Everyone belongs in STEM</h3>
-        <p class="desc">Diversity fuels progress. We create spaces where every learner feels seen and empowered.</p>
-        <div class="more" id="more-inclusivity" hidden>
-          We design activities with multiple entry points so learners can contribute at different skill levels.
-          Materials, examples, and role models reflect a wide range of backgrounds and perspectives. Belonging
-          isn't a slogan—it's a daily practice that expands who gets to participate and succeed.
-        </div>
-        <button class="cta" aria-controls="more-inclusivity" aria-expanded="false">Learn more →</button>
-      </article>
-
-      <!-- Card 5: Real-World Impact -->
-      <article class="card">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2a9.94 9.94 0 018.54 4.69l-1.7 1.13A7.96 7.96 0 0012 4a8 8 0 000 16 8.02 8.02 0 006.84-3.82l1.7 1.13A9.94 9.94 0 0112 22z"/></svg>
-        </div>
-        <h3 class="title">Learning that matters</h3>
-        <p class="desc">We connect knowledge to real-world challenges—making education meaningful and impactful.</p>
-        <div class="more" id="more-impact" hidden>
-          Projects tackle authentic problems—energy, health, environment, accessibility—so learners see how
-          science and engineering improve lives. We emphasize data literacy, ethical choices, and sustainability,
-          helping students measure outcomes and communicate their impact clearly.
-        </div>
-        <button class="cta" aria-controls="more-impact" aria-expanded="false">Learn more →</button>
-      </article>
-
-      <!-- Card 6: Lifelong Learning -->
-      <article class="card">
-        <div class="icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 6v6l4 2m6 4a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h3 class="title">Grow. Adapt. Keep learning.</h3>
-        <p class="desc">STEM never stops evolving—and neither do we. We embrace curiosity and lifelong growth.</p>
-        <div class="more" id="more-lifelong" hidden>
-          We cultivate habits that compound over time: reflection, feedback, and continuous practice.
-          Learners set goals, track progress, and celebrate iteration. As tools and technologies change,
-          the ability to learn how to learn is the most valuable skill of all.
-        </div>
-        <button class="cta" aria-controls="more-lifelong" aria-expanded="false">Learn more →</button>
-      </article>
     </section>
-</main>
 
-<script>
-  // Scroll reveal
-  const cards = document.querySelectorAll('.card');
-  const reveal = () => {
-    const trigger = window.innerHeight * 0.9;
-    cards.forEach(card => {
-      const top = card.getBoundingClientRect().top;
-      if (top < trigger) card.classList.add('revealed');
-    });
-  };
-  window.addEventListener('scroll', reveal);
-  reveal();
+    <section aria-labelledby="values-title">
+        <div class="section-heading">
+            <div><p class="eyebrow">Our values</p><h2 id="values-title">How we learn and build together</h2></div>
+            <p>These principles guide project work, presentations and collaboration across the festival community.</p>
+        </div>
 
-  // Inline expand/collapse with proper ARIA
-  document.querySelectorAll('.card .cta').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('aria-controls');
-      const panel = document.getElementById(id);
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      panel.hidden = expanded;
-      btn.setAttribute('aria-expanded', String(!expanded));
-      btn.textContent = expanded ? 'Learn more →' : 'Show less ↑';
-    });
-  });
-</script>
+        <div class="values-grid">
+            <article class="value-card"><div class="value-icon" aria-hidden="true">?</div><h3>Curiosity</h3><p>We begin with careful observation and questions worth investigating.</p><details><summary>Read more</summary><p>Students are encouraged to test assumptions, compare approaches and treat unexpected results as useful evidence.</p></details></article>
+            <article class="value-card"><div class="value-icon" aria-hidden="true">✦</div><h3>Creativity</h3><p>We turn ideas into experiments, models, prototypes and explanations.</p><details><summary>Read more</summary><p>Creative work is supported by iteration, feedback and the freedom to revise an idea when evidence suggests a better direction.</p></details></article>
+            <article class="value-card"><div class="value-icon" aria-hidden="true">↔</div><h3>Collaboration</h3><p>Strong projects are built through clear roles, discussion and shared responsibility.</p><details><summary>Read more</summary><p>Students practise listening, explaining decisions and integrating contributions from people with different strengths.</p></details></article>
+            <article class="value-card"><div class="value-icon" aria-hidden="true">+</div><h3>Belonging</h3><p>Every learner should have a meaningful way to participate in STEM.</p><details><summary>Read more</summary><p>Activities are designed with multiple entry points so students can contribute through research, building, coding, design or presentation.</p></details></article>
+            <article class="value-card"><div class="value-icon" aria-hidden="true">◎</div><h3>Real-world relevance</h3><p>Projects connect classroom knowledge to health, environment, technology and society.</p><details><summary>Read more</summary><p>Students are asked to consider evidence, ethics, sustainability and how clearly they can communicate impact.</p></details></article>
+            <article class="value-card"><div class="value-icon" aria-hidden="true">↗</div><h3>Continuous learning</h3><p>Progress comes from reflection, feedback and repeated practice.</p><details><summary>Read more</summary><p>The goal is not only to finish a project, but to understand what changed, what was learned and what should be attempted next.</p></details></article>
+        </div>
+    </section>
+
+    <section class="secondary-cta" aria-labelledby="community-cta-title">
+        <div><h2 id="community-cta-title">Take part in the platform</h2><p>Explore current work and learn how projects become part of the festival archive.</p></div>
+        <div class="platform-actions">
+            <a href="projects.php" class="platform-link primary">Browse projects</a>
+            <?php if (isTeacher() || isAdmin()): ?>
+                <a href="upload.php" class="platform-link">Submit a project</a>
+            <?php endif; ?>
+        </div>
+    </section>
+</div>
 
 <?php include 'includes/footer.php'; ?>
