@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/refinement.css" rel="stylesheet">
+    <link href="assets/css/content.css" rel="stylesheet">
     <script src="assets/js/main.js" defer></script>
 </head>
 <body>
