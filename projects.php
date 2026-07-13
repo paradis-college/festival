@@ -1,135 +1,115 @@
 <?php
-// Include core functions and handle project filtering
 require_once 'includes/functions.php';
 
-// Get filter options from URL
 $year = isset($_GET['year']) ? $_GET['year'] : null;
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'votes';
-
-// Get projects (optionally filtered by year)
 $projects = getProjects($year);
 
-// Sort projects based on user selection
 if ($sort === 'date') {
-    // Sort by most recent first
     usort($projects, function($a, $b) {
         return strtotime($b['created_at']) - strtotime($a['created_at']);
     });
 } elseif ($sort === 'title') {
-    // Sort alphabetically by title
     usort($projects, function($a, $b) {
         return strcmp($a['title'], $b['title']);
     });
 }
-// Default is by votes (already sorted in getProjects)
 
-// Get all available years for filter dropdown
 $years = getYears();
-
-// Set page title
 $title = 'All Projects';
 include 'includes/header.php';
 ?>
 
-<div class="pres-hero">
-  <h2>Student Presentations</h2>
-  <p class="pres-intro">
-    A stage for bold ideas and real-world problem solving — From a single idea to a working prototype — our students prove that science is an adventure, not a formula.
-    Here, experiments turn into breakthroughs, and passion turns into purpose.
-  </p>
+<section class="archive-hero" aria-labelledby="projects-title">
+    <div>
+        <p class="eyebrow">Project archive</p>
+        <h1 id="projects-title">Student projects</h1>
+        <p>Browse festival work by year, popularity or title. Each project keeps its description, media, votes and discussion in one place.</p>
+    </div>
+    <div class="archive-actions">
+        <?php if (isTeacher() || isAdmin()): ?>
+            <a href="upload.php" class="platform-link primary">Submit a project</a>
+        <?php endif; ?>
+        <a href="news.php" class="platform-link">Festival news</a>
+    </div>
+</section>
 
-  <div class="pres-cta">
-    <?php if (isTeacher() || isAdmin()): ?>
-      <a href="upload.php" class="btn">Submit Your Project →</a>
-    <?php endif; ?>
-    <a href="news.php" class="btn secondary">Get Updates →</a>
-  </div>
+<div class="archive-toolbar" aria-label="Project filters">
+    <form method="GET">
+        <label class="visually-hidden" for="project-year">Filter by year</label>
+        <select id="project-year" name="year" onchange="this.form.submit()">
+            <option value="">All years</option>
+            <?php foreach ($years as $yearOption): ?>
+                <option value="<?php echo htmlspecialchars($yearOption); ?>" <?php echo $year == $yearOption ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($yearOption); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <input type="hidden" name="sort" value="<?php echo htmlspecialchars($sort); ?>">
+    </form>
 
-  <!-- Filter controls -->
-  <div class="pres-filters">
-    <form method="GET" style="display: inline;">
-      <select name="year" class="chip" onchange="this.form.submit()" style="appearance: auto; cursor: pointer;">
-        <option value="">All Years</option>
-        <?php foreach ($years as $yearOption): ?>
-          <option value="<?php echo $yearOption; ?>" <?php echo $year == $yearOption ? 'selected' : ''; ?>>
-            <?php echo $yearOption; ?>
-          </option>
-        <?php endforeach; ?>
-      </select>
-      <input type="hidden" name="sort" value="<?php echo htmlspecialchars($sort); ?>">
+    <form method="GET">
+        <label class="visually-hidden" for="project-sort">Sort projects</label>
+        <select id="project-sort" name="sort" onchange="this.form.submit()">
+            <option value="votes" <?php echo $sort === 'votes' ? 'selected' : ''; ?>>Most voted</option>
+            <option value="date" <?php echo $sort === 'date' ? 'selected' : ''; ?>>Most recent</option>
+            <option value="title" <?php echo $sort === 'title' ? 'selected' : ''; ?>>Title A–Z</option>
+        </select>
+        <input type="hidden" name="year" value="<?php echo htmlspecialchars((string)$year); ?>">
     </form>
-    
-    <form method="GET" style="display: inline; margin-left: 10px;">
-      <select name="sort" class="chip" onchange="this.form.submit()" style="appearance: auto; cursor: pointer;">
-        <option value="votes" <?php echo $sort === 'votes' ? 'selected' : ''; ?>>By Votes</option>
-        <option value="date" <?php echo $sort === 'date' ? 'selected' : ''; ?>>By Date</option>
-        <option value="title" <?php echo $sort === 'title' ? 'selected' : ''; ?>>By Title</option>
-      </select>
-      <input type="hidden" name="year" value="<?php echo htmlspecialchars($year); ?>">
-    </form>
-  </div>
 </div>
 
-<!-- Projects grid -->
 <?php if (empty($projects)): ?>
-  <div class="pres-grid">
-    <article class="pres-card skeleton">
-      <div class="thumb skeleton-box"></div>
-      <div class="meta">
-        <h3 class="title skeleton-line">No projects yet</h3>
-        <p class="desc skeleton-line">
-          <?php if ($year): ?>
-            No projects were submitted in <?php echo $year; ?>.
-          <?php else: ?>
-            Be the first to upload a project!
-          <?php endif; ?>
+    <section class="secondary-card" aria-live="polite">
+        <p class="eyebrow">No results</p>
+        <h2>No projects found</h2>
+        <p>
+            <?php if ($year): ?>
+                No projects were submitted in <?php echo htmlspecialchars($year); ?>.
+            <?php else: ?>
+                No projects have been published yet.
+            <?php endif; ?>
         </p>
-        <span class="badge">Coming soon</span>
-      </div>
-    </article>
-  </div>
+    </section>
 <?php else: ?>
-  <div class="pres-grid">
-    <?php foreach ($projects as $project): ?>
-      <article class="pres-card">
-        <a href="project.php?id=<?php echo $project['id']; ?>" style="text-decoration: none; color: inherit;">
-          <div class="thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
-            🔬
-          </div>
-          <div class="meta">
-            <h3 class="title"><?php echo htmlspecialchars($project['title']); ?></h3>
-            <p class="desc">
-              <?php 
-                if ($project['description']) {
-                  echo htmlspecialchars(substr($project['description'], 0, 100)); 
-                  echo strlen($project['description']) > 100 ? '...' : '';
-                } else {
-                  echo 'View project details';
-                }
-              ?>
-            </p>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span class="badge"><?php echo $project['year']; ?></span>
-              <span class="badge" style="background: #ef4444;">
-                <i class="fas fa-heart"></i> <?php echo $project['vote_count']; ?>
-              </span>
-            </div>
-            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
-              by <?php echo htmlspecialchars($project['author_name']); ?>
-            </p>
-          </div>
-        </a>
-      </article>
-    <?php endforeach; ?>
-  </div>
+    <section class="project-archive-grid" aria-label="Published student projects">
+        <?php foreach ($projects as $project): ?>
+            <article class="project-archive-card">
+                <a class="project-archive-link" href="project.php?id=<?php echo (int)$project['id']; ?>">
+                    <div class="project-archive-thumb" aria-hidden="true"><i class="fas fa-flask"></i></div>
+                    <div class="project-archive-body">
+                        <h2><?php echo htmlspecialchars($project['title']); ?></h2>
+                        <p>
+                            <?php
+                            if (!empty($project['description'])) {
+                                $description = $project['description'];
+                                echo htmlspecialchars(mb_substr($description, 0, 130));
+                                echo mb_strlen($description) > 130 ? '…' : '';
+                            } else {
+                                echo 'Open the project to view its research, media and results.';
+                            }
+                            ?>
+                        </p>
+                        <div class="project-archive-meta">
+                            <div class="project-archive-meta-row">
+                                <span class="badge bg-secondary"><?php echo htmlspecialchars($project['year']); ?></span>
+                                <span class="badge bg-danger"><i class="fas fa-heart" aria-hidden="true"></i> <?php echo (int)$project['vote_count']; ?></span>
+                            </div>
+                            <p class="project-archive-author">By <?php echo htmlspecialchars($project['author_name']); ?></p>
+                        </div>
+                    </div>
+                </a>
+            </article>
+        <?php endforeach; ?>
+    </section>
 <?php endif; ?>
 
 <p class="pres-note">
-  <?php if (isTeacher() || isAdmin()): ?>
-    Submissions are open. <a href="upload.php">Upload your project</a> and share your innovation!
-  <?php else: ?>
-    Want to see your project featured here? Contact a teacher to submit your work.
-  <?php endif; ?>
+    <?php if (isTeacher() || isAdmin()): ?>
+        Submissions are open. <a href="upload.php">Upload a project</a> and add it to the archive.
+    <?php else: ?>
+        Students can work with a teacher to publish a project on the platform.
+    <?php endif; ?>
 </p>
 
 <?php include 'includes/footer.php'; ?>
