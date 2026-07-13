@@ -132,9 +132,29 @@
 }
 
 .value-card summary {
+    width: fit-content;
     cursor: pointer;
     color: #0b5ea8;
     font-weight: 750;
+}
+
+.value-card summary:hover {
+    text-decoration: underline;
+    text-underline-offset: .2em;
+}
+
+.value-card summary:focus-visible {
+    outline: 3px solid rgba(23, 105, 170, .35);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.value-card details[open] summary {
+    margin-bottom: .55rem;
+}
+
+.value-card details p:last-child {
+    margin-bottom: 0;
 }
 
 .secondary-cta {
@@ -164,5 +184,26 @@
     .secondary-grid,
     .values-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .secondary-hero {
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .secondary-hero h1 {
+        font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .secondary-cta,
+    .secondary-cta .platform-actions {
+        align-items: stretch;
+    }
+
+    .secondary-cta .platform-actions,
+    .secondary-cta .platform-link {
+        width: 100%;
     }
 }
