@@ -11,6 +11,7 @@
     <link href="/assets/css/refinement.css" rel="stylesheet">
     <link href="/assets/css/content.css" rel="stylesheet">
     <link href="/assets/css/content-review-fixes.css" rel="stylesheet">
+    <link href="/assets/css/platform-positioning.css" rel="stylesheet">
     <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/content-review-fixes.js" defer></script>
 </head>
@@ -20,17 +21,18 @@
     <nav id="navbar" aria-label="Primary navigation">
         <div class="navbar-shell">
             <a class="navbar-brand-link" href="#top" aria-label="Nikola Tesla Science Festival home">
-                <span class="brand-mark" aria-hidden="true">⚡</span>
-                <span class="brand-label">Nikola Tesla Festival</span>
+                <span class="brand-label">Nikola Tesla Science Festival</span>
             </a>
             <div class="navbar-links" aria-label="Festival pages">
                 <a href="#achievements">Achievements</a>
+                <a href="#projects">Projects</a>
                 <a href="#films">Films</a>
                 <a href="#publications">Publications</a>
                 <a href="#gallery">Gallery</a>
             </div>
-            <div class="navbar-account" aria-label="Preview information">
-                <span class="nav-action">Frontend preview</span>
+            <div class="navbar-account" aria-label="Platform actions">
+                <a class="nav-account-link" href="/projects.php">Browse projects</a>
+                <a class="nav-action" href="/upload.php">Submit a project</a>
             </div>
         </div>
     </nav>
@@ -40,13 +42,25 @@
             <div class="site-header-copy">
                 <p class="site-kicker">Paradis International College</p>
                 <h1 class="logo">Nikola Tesla <span>Science Festival</span></h1>
-                <p class="tagline">A meeting place for curiosity, invention and student-led discovery.</p>
+                <p class="tagline">A project platform, public showcase and archive for student-led science.</p>
             </div>
             <img src="/assets/images/download paradis college.png" alt="Paradis International College logo" class="site-logo-image">
         </div>
     </header>
 
     <main id="main-content" class="container mt-4">
+        <section class="content-section platform-intro" aria-labelledby="platform-title">
+            <div>
+                <p class="eyebrow">Festival platform</p>
+                <h2 id="platform-title">Discover, submit and revisit student projects</h2>
+                <p>The website combines three roles: a public festival showcase, a project submission platform and a year-by-year archive of student work and results.</p>
+            </div>
+            <div class="platform-actions">
+                <a class="platform-link primary" href="/projects.php">Browse all projects</a>
+                <a class="platform-link" href="/upload.php">Submit a project</a>
+            </div>
+        </section>
+
         <section class="content-section" id="achievements" aria-labelledby="achievements-title">
             <div class="section-heading">
                 <div>
@@ -55,7 +69,6 @@
                 </div>
                 <p>Recent results from robotics, invention, applied science and interdisciplinary projects developed by Paradis International College students.</p>
             </div>
-
             <div class="achievement-lead">
                 <article class="achievement-card primary">
                     <p class="eyebrow">INVENTICA 2026 · Iași</p>
@@ -67,7 +80,6 @@
                         <li><strong>Bronze Medals:</strong> Techno Wizards FLL Team and Ștefan Albu with Exoneuron</li>
                     </ul>
                 </article>
-
                 <article class="achievement-card secondary">
                     <p class="eyebrow">FIRST Tech Challenge · Eindhoven</p>
                     <h2>European Robotics Vice-Champions</h2>
@@ -78,12 +90,7 @@
         </section>
 
         <section class="content-section" aria-labelledby="awards-title">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">Awards overview</p>
-                    <h2 id="awards-title">2025–2026 distinctions</h2>
-                </div>
-            </div>
+            <div class="section-heading"><div><p class="eyebrow">Awards overview</p><h2 id="awards-title">2025–2026 distinctions</h2></div></div>
             <div class="awards-grid">
                 <article class="award-card"><h3>Air Hack Iași</h3><p>Paradis–SOLONOI earned second place in Infrastructure &amp; Operations during the 72-hour airport innovation hackathon.</p></article>
                 <article class="award-card"><h3>Kaohsiung 2025</h3><p>The MechaByte robot received the Platinum Trophy and a Gold Medal at the International Invention &amp; Design EXPO.</p></article>
@@ -92,18 +99,9 @@
         </section>
 
         <section class="content-section" id="films" aria-labelledby="festival-video-title">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">Festival film</p>
-                    <h2 id="festival-video-title">Our Festival in a Few Minutes</h2>
-                </div>
-                <p>A compact look at the atmosphere, experiments and people behind the Nikola Tesla Science Festival.</p>
-            </div>
+            <div class="section-heading"><div><p class="eyebrow">Festival film</p><h2 id="festival-video-title">Our Festival in a Few Minutes</h2></div><p>A compact look at the atmosphere, experiments and people behind the Nikola Tesla Science Festival.</p></div>
             <article class="media-card">
-                <video controls preload="metadata" playsinline>
-                    <source src="/assets/videos/festival-2025.mp4" type="video/mp4">
-                    Your browser does not support embedded video.
-                </video>
+                <video controls preload="metadata" playsinline><source src="/assets/videos/festival-2025.mp4" type="video/mp4">Your browser does not support embedded video.</video>
                 <div class="media-copy"><h3>Nikola Tesla Science Festival 2025</h3><p>Highlights from the festival’s tenth edition.</p></div>
             </article>
         </section>
@@ -118,10 +116,7 @@
         </section>
 
         <section class="content-section" id="publications" aria-labelledby="publications-title">
-            <div class="section-heading">
-                <div><p class="eyebrow">Project catalogues</p><h2 id="publications-title">Read the bilingual publications</h2></div>
-                <p>The current preview links to the Drive originals; compressed local editions can replace them later.</p>
-            </div>
+            <div class="section-heading"><div><p class="eyebrow">Project catalogues</p><h2 id="publications-title">Read the bilingual publications</h2></div><p>The current preview links to the Drive originals; compressed local editions can replace them later.</p></div>
             <div class="publications-grid">
                 <article class="publication-card"><h3>Paradis Educational Apiary — Tansa 2026</h3><p>Romanian and English catalogues.</p><div class="publication-meta"><a href="https://drive.google.com/file/d/1a5D0Hl6_nLnOlBmnmKuXNQaTv-9lNr_v/view" target="_blank" rel="noopener noreferrer">Romanian PDF</a><br><a href="https://drive.google.com/file/d/1TSbLFIomSwyx25xgyD7SSfchvwsKMwfY/view" target="_blank" rel="noopener noreferrer">English PDF</a></div></article>
                 <article class="publication-card"><h3>Floreal — January 2026</h3><p>Bilingual project catalogue.</p><div class="publication-meta"><a href="https://drive.google.com/file/d/1TllCy7DV8o1AtsZ0QLjO_4HwkXftR2Uk/view" target="_blank" rel="noopener noreferrer">Romanian PDF</a><br><a href="https://drive.google.com/file/d/1_3L4jV5I9OWL0-oyyvwPhnrfHadwyqeA/view" target="_blank" rel="noopener noreferrer">English PDF</a></div></article>
@@ -129,9 +124,7 @@
             </div>
         </section>
 
-        <section class="content-section" aria-labelledby="festival-overview-title">
-            <div class="hero"><div class="hero-content"><p class="eyebrow">10th edition · 13–17 October 2025</p><h2 id="festival-overview-title">The Human Universe in a Drop of Science</h2><p>The festival brought together inspiring guests, interactive talks, experiential learning, Radio Paradis, the Paradis Apiary and the Healer’s Pharmacy project.</p></div></div>
-        </section>
+        <section class="content-section" aria-labelledby="festival-overview-title"><div class="hero"><div class="hero-content"><p class="eyebrow">10th edition · 13–17 October 2025</p><h2 id="festival-overview-title">The Human Universe in a Drop of Science</h2><p>The festival brought together inspiring guests, interactive talks, experiential learning, Radio Paradis, the Paradis Apiary and the Healer’s Pharmacy project.</p></div></div></section>
 
         <section class="content-section" id="gallery" aria-labelledby="gallery-title">
             <div class="section-heading"><div><p class="eyebrow">Festival gallery</p><h2 id="gallery-title">Moments from the programme</h2></div></div>
@@ -143,10 +136,20 @@
             </div>
             <div id="lightbox" class="lightbox" aria-hidden="true"><button class="lightbox-close close" type="button" aria-label="Close image">&times;</button><img class="lightbox-content" id="lightbox-img" alt=""><div id="lightbox-caption"></div></div>
         </section>
+
+        <section class="content-section" id="projects" aria-labelledby="featured-projects-title">
+            <div class="section-heading">
+                <div><p class="eyebrow">Project gallery</p><h2 id="featured-projects-title">Projects from the programme</h2></div>
+                <p>Open a project to see its purpose, media and supporting publication.</p>
+            </div>
+            <div class="featured-projects-grid">
+                <a class="featured-project-card" href="/preview/floreal.html"><img src="/assets/images/IMG_5548.jpeg" alt="Floreal student project display" loading="lazy"><div class="featured-project-copy"><p class="eyebrow">Chemistry · Product design</p><h3>Floreal Perfume</h3><p>A student-led exploration of fragrance, formulation and presentation.</p><span class="project-open-label">Open project →</span></div></a>
+                <a class="featured-project-card" href="/preview/butterfly-farm.html"><img src="/assets/images/IMG_4206.jpg" alt="Butterfly Farm project activity" loading="lazy"><div class="featured-project-copy"><p class="eyebrow">Biology · Biodiversity</p><h3>Paradis Butterfly Farm</h3><p>Learning through observation of life cycles, habitats and biodiversity.</p><span class="project-open-label">Open project →</span></div></a>
+                <a class="featured-project-card" href="/preview/apiary.html"><img src="/assets/images/PHOTO-2025-10-08-18-57-54.jpg" alt="Paradis Educational Apiary project" loading="lazy"><div class="featured-project-copy"><p class="eyebrow">Ecology · Experiential learning</p><h3>Paradis Educational Apiary</h3><p>A practical project about pollination, ecosystems and responsible beekeeping.</p><span class="project-open-label">Open project →</span></div></a>
+            </div>
+        </section>
     </main>
 
-    <footer class="text-light mt-5 py-4">
-        <div class="container"><div class="row align-items-center"><div class="col-md-7"><h5>Nikola Tesla Science Festival</h5><p class="mb-0">Frontend-only Vercel preview. PHP, authentication and database functionality remain on the existing deployment.</p></div><div class="col-md-5 text-md-end"><small>Paradis International College</small></div></div></div>
-    </footer>
+    <footer class="text-light mt-5 py-4"><div class="container"><div class="row align-items-center"><div class="col-md-7"><h5>Nikola Tesla Science Festival</h5><p class="mb-0">Public festival showcase, project platform and archive. PHP, authentication and database functionality remain on the existing deployment.</p></div><div class="col-md-5 text-md-end"><small>Paradis International College</small></div></div></div></footer>
 </body>
 </html>
