@@ -14,6 +14,7 @@
     
     <!-- Our custom styles -->
     <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/refinement.css" rel="stylesheet">
     
     <!-- Festival Main JavaScript - Optimized single file -->
     <script src="assets/js/main.js" defer></script>
