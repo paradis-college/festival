@@ -23,6 +23,53 @@ document.addEventListener('DOMContentLoaded', () => {
         element.innerHTML = 'Paradis <span>Science Festival</span>';
     });
 
+    // Add restrained award markers to the two lead achievements.
+    const leadAwards = document.querySelectorAll('.achievement-lead .achievement-card h2');
+    if (leadAwards[0] && !leadAwards[0].querySelector('.award-marker')) {
+        leadAwards[0].insertAdjacentHTML('afterbegin', '<span class="award-marker" aria-hidden="true">🏆</span>');
+    }
+    if (leadAwards[1] && !leadAwards[1].querySelector('.award-marker')) {
+        leadAwards[1].insertAdjacentHTML('afterbegin', '<span class="award-marker" aria-hidden="true">🥈</span>');
+    }
+
+    // Final visual polish shared by the static preview and PHP deployment.
+    const polish = document.createElement('style');
+    polish.textContent = `
+        .award-marker {
+            display: inline-block;
+            margin-right: .5rem;
+            font-size: .9em;
+            transform: translateY(-.04em);
+        }
+        body.static-preview main.container,
+        body.static-preview .navbar-shell {
+            width: min(calc(100% - 32px), 1180px);
+            margin-inline: auto;
+        }
+        body.static-preview main.container {
+            padding-top: 1.5rem;
+            padding-bottom: 3rem;
+        }
+        body.static-preview .content-section:first-child {
+            margin-top: 2rem;
+        }
+        body.static-preview .featured-projects-grid {
+            align-items: stretch;
+        }
+        body.static-preview .featured-project-card {
+            height: 100%;
+        }
+        body.static-preview .featured-project-copy {
+            display: flex;
+            min-height: 210px;
+            flex-direction: column;
+        }
+        body.static-preview .project-open-label {
+            margin-top: auto;
+        }
+    `;
+    document.head.appendChild(polish);
+
     const isStaticPreview = window.location.pathname.startsWith('/preview') || document.body.classList.contains('static-preview');
 
     if (isStaticPreview) {
