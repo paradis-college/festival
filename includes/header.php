@@ -12,6 +12,7 @@
     <link href="assets/css/refinement.css" rel="stylesheet">
     <link href="assets/css/content.css" rel="stylesheet">
     <link href="assets/css/content-review-fixes.css" rel="stylesheet">
+    <link href="assets/css/platform-positioning.css" rel="stylesheet">
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/content-review-fixes.js" defer></script>
 </head>
@@ -21,8 +22,7 @@
     <nav id="navbar" aria-label="Primary navigation">
         <div class="navbar-shell">
             <a class="navbar-brand-link" href="index.php" aria-label="Nikola Tesla Science Festival home">
-                <span class="brand-mark" aria-hidden="true">⚡</span>
-                <span class="brand-label">Nikola Tesla Festival</span>
+                <span class="brand-label">Nikola Tesla Science Festival</span>
             </a>
 
             <div class="navbar-links" aria-label="Festival pages">
@@ -54,7 +54,7 @@
             <div class="site-header-copy">
                 <p class="site-kicker">Paradis International College</p>
                 <h1 class="logo">Nikola Tesla <span>Science Festival</span></h1>
-                <p class="tagline">A meeting place for curiosity, invention and student-led discovery.</p>
+                <p class="tagline">A project platform, public showcase and archive for student-led science.</p>
             </div>
             <img
                 src="assets/images/download paradis college.png"
